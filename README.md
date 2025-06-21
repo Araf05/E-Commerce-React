@@ -1,12 +1,28 @@
-# React + Vite
+# Proyecto eCommerce 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Requerimientos 1: Crear una funcionalidad básica para el manejo de un carrito de compras
+1. Crear un componente para listar los productos disponibles.
+2. Usar el hook useState para manejar el estado del carrito.
+3. Implementar un evento de clic que permita agregar productos al carrito.
+4. Mostrar el carrito con los productos seleccionados en otro componente.
+5. Crear un Layout del eCommerce
 
-Currently, two official plugins are available:
+### Requerimiento 2: Conectar la aplicación a una API que provea información sobre los productos.
+1. Integración con una API
+2. Estado de carga y errores
+3. Gestión del estado con useState
+4. Actualizar el diseño del eCommerce
+5. Manejo de efectos secundarios con useEffect
+6. Ampliación del carrito
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Requerimiento 3: Integración de rutas
+1. Implementación de rutas
+2. Estado de carga y manejo de errores
+3. Crear componente para cada sección
+4. Navegar entre productos
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Requerimiento 4: Implementar rutas dinámicas y protegidas
+1. Rutas Dinámicas
+2. Interactividad
+3. Rutas Protegidas
+4. Navbar
