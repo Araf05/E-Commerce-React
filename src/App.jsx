@@ -6,6 +6,7 @@ import AcercaDe from './pages/AcercaDe'
 import GaleriaDeProductos from './pages/GaleriaDeProductos'
 import Contactos from './pages/Contactos'
 import NotFound from './pages/NotFound'
+import DetalleProducto from './components/DetalleProducto'
 
 function App() {
   const [cart, setCart] = useState([])
@@ -65,6 +66,8 @@ function App() {
         <Route path='/acercade' element={<AcercaDe quitarCarrito={handleDeleteFromCart} cart={cart} />} />
 
         <Route path='/productos' element={<GaleriaDeProductos quitarCarrito={handleDeleteFromCart} agregarCarrito={handleAddToCart} cart={cart} productos={productos} cargando={cargando} />} />
+
+        <Route path='/productos/:id' element={<DetalleProducto />} />
 
         <Route path='/contacto' element={<Contactos quitarCarrito={handleDeleteFromCart} cart={cart} />} />
 
