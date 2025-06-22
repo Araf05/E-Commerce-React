@@ -7,12 +7,16 @@ import GaleriaDeProductos from './pages/GaleriaDeProductos'
 import Contactos from './pages/Contactos'
 import NotFound from './pages/NotFound'
 import DetalleProducto from './components/DetalleProducto'
+import Login from './pages/Login'
+import Admin from './pages/Admin'
+import RutasProtegidas from './auth/RutasProtegidas'
 
 function App() {
   const [cart, setCart] = useState([])
   const [productos, setProductos] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState(false)
+  const [isAuthenticated, setIsAuth] = useState(false)
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products/')
@@ -70,6 +74,10 @@ function App() {
         <Route path='/productos/:id' element={<DetalleProducto productos={productos} />} />
 
         <Route path='/contacto' element={<Contactos quitarCarrito={handleDeleteFromCart} cart={cart} />} />
+
+        <Route path='/admin' element={<RutasProtegidas isAuthenticated={isAuthenticated}> <Admin /> </RutasProtegidas>} />
+
+        <Route path='/login' element={<Login />} />
 
         <Route path='*' element={<NotFound />} />
 
