@@ -10,6 +10,10 @@ const Login = () => {
     const [error, setError] = useState({})
     const navigate = useNavigate()
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
     return (
         <div>
             <h1>Login</h1>
