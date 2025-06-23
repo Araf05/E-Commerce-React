@@ -12,6 +12,14 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        let validationErrors = {}
+        if (!email) validationErrors.email = 'El email es requerido'
+        if (!password) validationErrors.password = 'La contraseña es requerida'
+
+        if (Object.keys(validationErrors).length > 0) {
+            setError(validationErrors)
+        }
+        return
     }
 
     return (
