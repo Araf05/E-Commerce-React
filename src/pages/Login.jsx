@@ -10,7 +10,7 @@ const Login = () => {
     const [error, setError] = useState({})
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         let validationErrors = {}
         if (!email) validationErrors.email = 'El email es requerido'
@@ -20,6 +20,28 @@ const Login = () => {
             setError(validationErrors)
         }
         return
+    }
+
+    try {
+
+        const res = await fetch('data/users.json')
+        const users = await res.json()
+
+        const foundUser = users.find((user) => user.email === email && user.password === password)
+
+        if (!foundUser) {
+            setError({ email: 'credenciales invalidas' })
+        } else {
+            if (foundUser.role === 'admin') {
+                setIsAuth(true)
+                navigate('/admin')
+            } else {
+                navigate('/')
+            }
+        }
+
+    } catch (err) {
+        setError({ email: 'Algo salió mal. Por favor, intentalo más tarde.' })
     }
 
     return (
