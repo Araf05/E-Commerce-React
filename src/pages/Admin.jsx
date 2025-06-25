@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import cargando from '../assets/load-1110_256.gif'
 
 const Admin = () => {
     const [productos, setProducts] = useState([])
@@ -23,7 +24,7 @@ const Admin = () => {
     return (
         <div >
             {loading ? (
-                <p>Cargando...</p>
+                <img src={cargando} alt='loading' />
             ) : (
                 <>
                     <nav>
