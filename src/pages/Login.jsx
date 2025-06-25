@@ -22,12 +22,14 @@ const Login = () => {
         }
 
         try {
-            const res = await fetch('data/users.json')
+            const res = await fetch('/data/users.json')
             const users = await res.json()
 
             const foundUser = users.find(
                 (user) => user.email === email && user.password === password
             )
+
+
 
             if (!foundUser) {
                 setError({ email: 'Las credenciales son invalidas', password: 'Las credenciales son invalidas' })
@@ -41,6 +43,7 @@ const Login = () => {
             }
 
         } catch (err) {
+            console.log("setIsAuth:", setIsAuth)
             setError({ email: 'Algo salió mal. Por favor, intentalo más tarde.' })
         }
     }
