@@ -14,7 +14,7 @@ const GaleriaDeProductos = ({ cart, productos, cargando, agregarCarrito, quitarC
             </div>
             {
                 cargando ? <img src={loading} alt='loading' /> :
-                    <ProductList agregarCarrito={agregarCarrito} productos={productos} />
+                    <ProductList agregarCarrito={agregarCarrito} productos={productos} />                        
             }
             <Footer />
         </>
