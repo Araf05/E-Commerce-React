@@ -60,57 +60,60 @@ const Admin = () => {
                     </form>
                     <ul style={{
                         display: 'flex',
-                        flexDirection: 'column',
                         flexWrap: 'wrap',
-                        gap: '30px',
-                        justifyContent: 'space-evenly'
+                        gap: '15px',
+                        justifyContent: 'space-evenly',
+                        padding: '0'
                     }}>
                         {productos.map((product) => (
                             <li key={product.id}
-                                //className='card'
                                 style={{
                                     display: 'flex',
-                                    flexDirection: 'row',
-                                    width: '100%',
-                                    minHeight: '100px',
+                                    flexDirection: 'column',
+                                    width: '200px',
+                                    minHeight: '200px',
                                     alignItems: 'center',
-                                    border: '1px solid black',
+                                    border: '1px solid grey',
                                     justifyContent: 'space-between',
                                     padding: '15px'
                                 }}
                             >
                                 <div style={{
                                     display: 'flex',
-                                    minWidth: '300px',
+                                    minWidth: '100px',
                                     height: '100px',
-                                    justifyContent: 'space-evenly',
-                                    border: '1px solid black'
+                                    justifyContent: 'space-evenly'
                                 }}>
                                     <img
                                         src={product.image}
                                         alt={product.name}
                                         style={{
-                                            width: '100%',
+                                            width: '100px',
                                             maxHeight: '90px',
                                             objectFit: 'contain',
-                                            margin: 'auto',
-                                            border: '1px solid red'
+                                            margin: 'auto'
                                         }}
                                     />
                                 </div>
-                                <span className='nombre' style={{ margin: 'auto', width: '300px' }}>{product.name}</span>
-                                <span className='precio' style={{ margin: 'auto' }}>${product.price}</span>
                                 <div style={{
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    width: '200px',
-                                    padding: '5px',
-                                    alignItems: 'center',
-                                    margin: 'auto',
-                                    border: '1px solid green'
+                                    width: '100%',
+                                    justifyContent: 'center'
                                 }}>
-                                    <button style={{ fontSize: '12px', width: '100px' }}>Editar</button>
-                                    <button style={{ fontSize: '12px', width: '100px' }}>Eliminar</button>
+                                    <span className='nombre' style={{ margin: 'auto', width: '100%', fontWeight: 'bold' }}>{product.name}</span>
+                                    <span className='precio' style={{ margin: 'auto' }}>${product.price}</span>
+                                    <div style={{
+                                        display: 'flex',
+                                        width: '100%',
+                                        padding: '5px',
+                                        justifyContent: 'center',
+                                        margin: 'auto',
+                                        gap: '10px'
+                                    }}>
+                                        <button style={{ fontSize: '12px', width: '80px', backgroundColor: 'grey', color: 'white' }}>Editar</button>
+                                        <button style={{ fontSize: '12px', width: '80px', backgroundColor: 'red', color: 'white' }}>Eliminar</button>
+                                    </div>
                                 </div>
                             </li>
                         ))}
