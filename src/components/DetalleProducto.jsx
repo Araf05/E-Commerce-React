@@ -1,7 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import loading from '../assets/load-1110_256.gif'
 
-const DetalleProducto = ({ productos }) => {
+const DetalleProducto = ({ productos, cargando }) => {
     console.log(productos)
 
     const { id } = useParams()
@@ -10,9 +11,37 @@ const DetalleProducto = ({ productos }) => {
 
     return (
         <div>
-            <h1>Detalle de Producto: {id}</h1>
-            {product ? (<h2>{product.title}</h2>) : (<p>Producto no encontrado</p>)}
-        </div>
+            {
+                cargando ? <img src={loading} alt='loading' /> :
+
+
+                    (product ? (
+                        <>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                padding: '15px'
+                            }}>
+                                <div>
+                                    <img src={product.image} alt={product.name}
+                                        style={{
+                                            width: '200px'
+                                        }} />
+                                </div>
+                                <h2>{product.title}</h2>
+                                <p>stock: {product.rating.count}</p>
+                                <h3>${product.price}</h3>
+                                <button style={{ width: 'fit-content' }}>Agregar</button>
+                                <p>{product.description}</p>
+                            </div>
+                        </>
+
+
+                    ) : (<p>Producto no encontrado</p>)
+                    )
+            }
+
+        </div >
     )
 }
 

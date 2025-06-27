@@ -26,7 +26,7 @@ function App() {
 
         <Route path='/productos' element={<GaleriaDeProductos quitarCarrito={handleDeleteFromCart} agregarCarrito={handleAddToCart} cart={cart} productos={productos} cargando={cargando} />} />
 
-        <Route path='/productos/:id' element={<DetalleProducto productos={productos} />} />
+        <Route path='/productos/:id' element={<DetalleProducto productos={productos} cargando={cargando} />} />
 
         <Route path='/contacto' element={<Contactos quitarCarrito={handleDeleteFromCart} cart={cart} />} />
 
