@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import AdminHeader from '../components/estaticos/AdminHeader'
 import cargando from '../assets/load-1110_256.gif'
+import FormularioProducto from '../components/FormularioProducto'
 
 const Admin = () => {
     const [productos, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         fetch('./data/data.json')
@@ -30,24 +32,6 @@ const Admin = () => {
                 <>
                     <AdminHeader />
                     <h1>Dashboard Administrativo</h1>
-                    <form>
-                        <input
-                            type='text'
-                            name='name'
-                            placeholder='Nombre del Producto'
-                            required
-                        />
-                        <input
-                            type='number'
-                            name='price'
-                            placeholder='Precio del Producto'
-                            required
-                        />
-                        <button type='submit'>
-                            Editar
-                            {/* {form.id ? 'Editar' : 'Crear'} */}
-                        </button>
-                    </form>
                     <ul style={{
                         display: 'flex',
                         flexWrap: 'wrap',
@@ -111,6 +95,9 @@ const Admin = () => {
 
                 </>
             )}
+
+            <button onClick={() => setOpen(true)}></button>
+            {open && (<FormularioProducto />)}
 
         </div>
     )
