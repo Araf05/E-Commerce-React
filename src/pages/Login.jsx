@@ -52,7 +52,9 @@ const Login = () => {
 
     return (
         <>
-            <img src={login} alt="login" style={{width:'200px'}}/>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img src={login} alt="login" style={{ width: '200px' }} />
+            </div>
             <form
                 onSubmit={handleSubmit}
                 style={{

@@ -8,12 +8,8 @@ const Header = ({ cartItems, quitarCarrito }) => {
 
     return (
         <header>
-            <nav>
+            <div className='hRow' >
                 <ul>
-                    <li><Link to='/' className='link'>Inicio</Link></li>
-                    <li><Link to='/acercade' className='link'>Sobre nosotros</Link></li>
-                    <li><Link to='/productos' className='link'>Galeria de productos</Link></li>
-                    <li><Link to='/contacto' className='link'>Contacto</Link></li>
                     <li className='cartnav'>
                         <button className='btnCart' onClick={() => setCartOpen(true)}>
                             <i class="fa-solid fa-cart-shopping"></i>
@@ -25,6 +21,14 @@ const Header = ({ cartItems, quitarCarrito }) => {
                             <i class="fa-solid fa-user"></i>
                         </Link>
                     </li>
+                </ul>
+            </div>
+            <nav>
+                <ul>
+                    <li><Link to='/' className='link'>Inicio</Link></li>
+                    <li><Link to='/acercade' className='link'>Sobre nosotros</Link></li>
+                    <li><Link to='/productos' className='link'>Galeria de productos</Link></li>
+                    <li><Link to='/contacto' className='link'>Contacto</Link></li>
                 </ul>
             </nav>
         </header>
