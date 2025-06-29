@@ -15,8 +15,15 @@ const Header = ({ cartItems, quitarCarrito }) => {
                     <li><Link to='/productos' className='link'>Galeria de productos</Link></li>
                     <li><Link to='/contacto' className='link'>Contacto</Link></li>
                     <li className='cartnav'>
-                        <button className='btnCart' onClick={() => setCartOpen(true)}><i className="fa-solid fa-cart-shopping"></i></button>
+                        <button className='btnCart' onClick={() => setCartOpen(true)}>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
                         <Cart quitarCarrito={quitarCarrito} cartItems={cartItems} isOpen={isCartOpen} onClose={() => setCartOpen(false)} />
+                    </li>
+                    <li>
+                        <Link to='/login' className='link'>
+                            <i class="fa-solid fa-user"></i>
+                        </Link>
                     </li>
                 </ul>
             </nav>

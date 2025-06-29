@@ -30,6 +30,10 @@ footer {
 
 }
 
+i {
+    font-size: 20px;
+}
+
 .fa-cart-shopping {
     color: red;
 }
