@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import AdminHeader from '../components/estaticos/AdminHeader'
 import cargando from '../assets/load-1110_256.gif'
 
 const Admin = () => {
@@ -27,18 +28,7 @@ const Admin = () => {
                 <img src={cargando} alt='loading' />
             ) : (
                 <>
-                    <nav>
-                        <ul>
-                            <li>
-                                <button>
-                                    <i className='fa-solid fa-right-from-bracket'></i>
-                                </button>
-                            </li>
-                            <li>
-                                <a href="/login">Admin</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <AdminHeader />
                     <h1>Dashboard Administrativo</h1>
                     <form>
                         <input
