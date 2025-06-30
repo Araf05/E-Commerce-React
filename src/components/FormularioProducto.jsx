@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 
 const FormularioProducto = ({ onAgregar }) => {
     const [producto, setProducto] = useState({
-        nombre: '',
-        precio: '',
-        decripción: '',
-        categoria: '',
-        stock: ''
+        name: '',
+        price: '',
+        description: '',
+        image: '',
+        category: ''
     })
 
-    const [errors, setErrors] = useState({})
+    const [errores, setErrores] = useState({})
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -20,52 +20,74 @@ const FormularioProducto = ({ onAgregar }) => {
         e.preventDefault()
         onAgregar(producto)
         setProducto({
-            nombre: '',
-            precio: '',
-            decripción: '',
-            categoria: '',
-            stock: ''
+            name: '',
+            price: '',
+            description: '',
+            image: '',
+            category: ''
         })
     }
 
     return (
-        <div>
-            <form>
-                <input
-                    type='text'
-                    name='name'
-                    placeholder='Nombre del Producto'
-                    required
-                />
-                <input
-                    type='number'
-                    name='price'
-                    placeholder='Precio'
-                    required
-                />
+        <form onSubmit={handleSubmit}>
+            <h2>Agregar producto</h2>
+            <div>
+                <label>Nombre</label>
                 <input
                     type="text"
-                    name='decription'
-                    placeholder='Descripción'
+                    name='name'
+                    value={producto.name}
+                    onChange={handleChange}
+                    required
                 />
+                {errores.name && <p style={{ colore: 'red' }}>{errores.name}</p>}
+            </div>
+            <div>
+                <label>Precio</label>
+                <input
+                    type="number"
+                    name='price'
+                    value={producto.price}
+                    onChange={handleChange}
+                    min={0}
+                    required
+                />
+                {errores.price && <p style={{ colore: 'red' }}>{errores.price}</p>}
+            </div>
+            <div>
+                <label>Descripción</label>
+                <textarea
+                    name='description'
+                    value={producto.description}
+                    onChange={handleChange}
+                    required
+                />
+                {errores.description && <p style={{ colore: 'red' }}>{errores.description}</p>}
+            </div>
+            <div>
+                <label>Imagen</label>
+                <input
+                    type="text"
+                    name='image'
+                    value={producto.image}
+                    onChange={handleChange}
+                    required
+                />
+                {errores.image && <p style={{ colore: 'red' }}>{errores.image}</p>}
+            </div>
+            <div>
+                <label>Categoría</label>
                 <input
                     type="text"
                     name='category'
-                    placeholder='Categoria'
+                    value={producto.category}
+                    onChange={handleChange}
+                    required
                 />
-                <input
-                    type="number"
-                    name='stock'
-                    placeholder='Stock'
-                />
-
-
-                <button type='submit'>
-                    Editar
-                    {/* {form.id ? 'Editar' : 'Crear'} */}
-                </button>
-            </form>
-        </div>
+                {errores.category && <p style={{ colore: 'red' }}>{errores.category}</p>}
+            </div>
+            <button type='submit'>Crear</button>
+        </form>
     )
 }
 

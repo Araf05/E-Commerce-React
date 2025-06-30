@@ -9,7 +9,7 @@ const Admin = () => {
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        fetch('./data/data.json')
+        fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products')
             .then((response) => response.json())
             .then((data) => {
                 setTimeout(() => {
@@ -23,6 +23,26 @@ const Admin = () => {
                 setLoading(false)
             })
     }, [])
+
+    const agregarProducto = async (producto) => {
+        try {
+            const respuesta = await fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(producto)
+            })
+            if (!respuesta.ok) {
+                throw new Error('Error al agregar producto')
+            }
+            const data = await respuesta.json()
+            console.log(data)
+            console.log({ producto })
+            alert('Producto agregado correctamente')
+        } catch (error) {
+            console.log(error.message)
+        }
+        console.log({ productos })
+    }
 
     return (
         <div >
@@ -60,7 +80,7 @@ const Admin = () => {
                                 }}>
                                     <img
                                         src={product.image}
-                                        alt={product.name}
+                                        alt={product.title}
                                         style={{
                                             width: '100px',
                                             maxHeight: '90px',
@@ -75,7 +95,7 @@ const Admin = () => {
                                     width: '100%',
                                     justifyContent: 'center'
                                 }}>
-                                    <span className='nombre' style={{ margin: 'auto', width: '100%', fontWeight: 'bold' }}>{product.name}</span>
+                                    <span className='nombre' style={{ margin: 'auto', width: '100%', fontWeight: 'bold' }}>{product.title}</span>
                                     <span className='precio' style={{ margin: 'auto' }}>${product.price}</span>
                                     <div style={{
                                         display: 'flex',
@@ -92,12 +112,12 @@ const Admin = () => {
                             </li>
                         ))}
                     </ul>
+                    <button onClick={() => setOpen(true)}>Agregar nuevo producto</button>
+                    {open && (<FormularioProducto onAgregar={agregarProducto} />)}
 
                 </>
-            )}
 
-            <button onClick={() => setOpen(true)}></button>
-            {open && (<FormularioProducto />)}
+            )}
 
         </div>
     )
