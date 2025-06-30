@@ -7,7 +7,12 @@ const FormularioProducto = ({ onAgregar }) => {
         price: '',
         description: '',
         image: '',
-        category: ''
+        category: '',
+        stock: '',
+        type: '',
+        featured: 'false',
+        brand: '',
+        characteristics: {}
     })
 
     const [errores, setErrores] = useState({})
@@ -25,7 +30,12 @@ const FormularioProducto = ({ onAgregar }) => {
             price: '',
             description: '',
             image: '',
-            category: ''
+            category: '',
+            stock: '',
+            type: '',
+            featured: 'false',
+            brand: '',
+            characteristics: {}
         })
     }
 
@@ -88,6 +98,16 @@ const FormularioProducto = ({ onAgregar }) => {
                 {errores.category && <p style={{ colore: 'red' }}>{errores.category}</p>}
             </div>
             <div>
+                <label>Stock</label>
+                <input
+                    type="number"
+                    name='stock'
+                    value={producto.stock}
+                    onChange={handleChange}
+                />
+                {errores.stock && <p style={{ colore: 'red' }}>{errores.stock}</p>}
+            </div>
+            <div>
                 <label>Tipo</label>
                 <input
                     type="text"
@@ -97,6 +117,26 @@ const FormularioProducto = ({ onAgregar }) => {
                     required
                 />
                 {errores.type && <p style={{ colore: 'red' }}>{errores.type}</p>}
+            </div>
+            <div>
+                <label>Destacado</label>
+                <input
+                    type="checkbox"
+                    name='featured'
+                    value={producto.featured}
+                    onChange={handleChange}
+                />
+                {errores.featured && <p style={{ colore: 'red' }}>{errores.featured}</p>}
+            </div>
+            <div>
+                <label>Marca</label>
+                <input
+                    type="text"
+                    name='brand'
+                    value={producto.brand}
+                    onChange={handleChange}
+                />
+                {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
             </div>
             <button type='submit'>Crear</button>
         </form>
