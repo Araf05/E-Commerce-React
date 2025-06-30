@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Indumentaria",
+        "type": [
+            "Calzado",
+            "Campera",
+            "Pantalon",
+            "Remera",
+            "Sweater",
+            "Vestido"
+        ]
+    },
+    {
+        "name": "Joyería",
+        "type": [
+            "Aro",
+            "Anillo"
+        ]
+    }
+]

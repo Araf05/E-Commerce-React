@@ -63,6 +63,17 @@ ul {
             color: #5fe4d4;
         }
     }
+
+    .active {
+        color: #5fe4d4;
+        font-weight: bold;
+        border-bottom: 2px solid #5fe4d4;
+    }
+
+    .pending {
+        color: red;
+        font-weight: bold;
+    }
 }
 
 

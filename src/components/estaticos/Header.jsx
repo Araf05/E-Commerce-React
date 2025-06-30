@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import Cart from '../Cart'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './styleEstatico.css'
 import { CartContext } from '../../context/CartContext'
 
@@ -28,13 +28,25 @@ const Header = () => {
             </div>
             <nav>
                 <ul>
-                    <li><Link to='/' className='link'>Inicio</Link></li>
-                    <li><Link to='/acercade' className='link'>Sobre nosotros</Link></li>
-                    <li><Link to='/productos' className='link'>Galeria de productos</Link></li>
-                    <li><Link to='/contacto' className='link'>Contacto</Link></li>
+                    <li><NavLink to='/' className={
+                        ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"} >
+                        Inicio
+                    </NavLink></li>
+
+                    <li><NavLink to='/acercade' className={
+                        ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"}>
+                        Sobre nosotros</NavLink></li>
+
+                    <li><NavLink to='/productos' className={
+                        ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"}>
+                        Galeria de productos</NavLink></li>
+
+                    <li><NavLink to='/contacto' className={
+                        ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"}>
+                        Contacto</NavLink></li>
                 </ul>
             </nav>
-        </header>
+        </header >
     )
 }
 

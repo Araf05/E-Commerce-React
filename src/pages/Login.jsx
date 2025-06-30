@@ -23,7 +23,7 @@ const Login = () => {
         }
 
         try {
-            const res = await fetch('/data/users.json')
+            const res = await fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/users')
             const users = await res.json()
 
             const foundUser = users.find(
