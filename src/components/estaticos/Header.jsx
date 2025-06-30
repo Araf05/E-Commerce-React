@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Cart from '../Cart'
 import { Link } from 'react-router-dom'
 import './styleEstatico.css'
+import { CartContext } from '../../context/CartContext'
 
-const Header = ({ cartItems, quitarCarrito }) => {
+const Header = () => {
     const [isCartOpen, setCartOpen] = useState(false)
+
+    const { cart, cargando, productos, error, isAuthenticated, handleAddToCart, handleDeleteFromCart } = useContext(CartContext)
 
     return (
         <header>
@@ -14,7 +17,7 @@ const Header = ({ cartItems, quitarCarrito }) => {
                         <button className='btnCart' onClick={() => setCartOpen(true)}>
                             <i class="fa-solid fa-cart-shopping"></i>
                         </button>
-                        <Cart quitarCarrito={quitarCarrito} cartItems={cartItems} isOpen={isCartOpen} onClose={() => setCartOpen(false)} />
+                        <Cart isOpen={isCartOpen} onClose={() => setCartOpen(false)} />
                     </li>
                     <li>
                         <Link to='/login' className='link'>

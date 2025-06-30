@@ -2,10 +2,11 @@ import React from 'react'
 import Header from '../components/estaticos/Header'
 import Footer from '../components/estaticos/Footer'
 
-const Contactos = ({ cart, quitarCarrito }) => {
+const Contactos = () => {
+    
     return (
         <>
-            <Header cartItems={cart} quitarCarrito={quitarCarrito} />
+            <Header />
             <h1>Contactos</h1>
             <p style={{ textAlign: 'center', marginBottom: '20px', color: '#555' }}>
                 Podés comunicarte con nosotros a través de nuestras redes sociales o por correo electrónico. ¡Te responderemos lo antes posible!

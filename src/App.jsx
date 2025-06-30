@@ -20,15 +20,15 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path='/' element={<Home quitarCarrito={handleDeleteFromCart} agregarCarrito={handleAddToCart} cart={cart} productos={productos} cargando={cargando} />} />
+        <Route path='/' element={<Home />} />
 
-        <Route path='/acercade' element={<AcercaDe quitarCarrito={handleDeleteFromCart} cart={cart} />} />
+        <Route path='/acercade' element={<AcercaDe />} />
 
-        <Route path='/productos' element={<GaleriaDeProductos quitarCarrito={handleDeleteFromCart} agregarCarrito={handleAddToCart} cart={cart} productos={productos} cargando={cargando} />} />
+        <Route path='/productos' element={<GaleriaDeProductos />} />
 
         <Route path='/productos/:id' element={<DetalleProducto productos={productos} cargando={cargando} />} />
 
-        <Route path='/contacto' element={<Contactos quitarCarrito={handleDeleteFromCart} cart={cart} />} />
+        <Route path='/contacto' element={<Contactos />} />
 
         <Route path='/admin' element={<RutasProtegidas isAuthenticated={isAuthenticated}> <Admin /> </RutasProtegidas>} />
 

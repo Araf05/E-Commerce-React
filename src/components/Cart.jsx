@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './styleCart.css'
 import Empty from '../assets/empty-box.svg'
+import { CartContext } from '../context/CartContext'
 
-const Cart = ({ cartItems, isOpen, onClose, quitarCarrito }) => {
+const Cart = ({ isOpen, onClose }) => {
+
+    const { cart, cargando, productos, error, isAuthenticated, handleAddToCart, handleDeleteFromCart } = useContext(CartContext)
+
     return (
         <div className={`cart-drawer ${isOpen ? 'open' : ''}`}>
             <div className='cart-header'>
@@ -12,7 +16,7 @@ const Cart = ({ cartItems, isOpen, onClose, quitarCarrito }) => {
                 </button>
             </div>
             <div className='cart-content'>
-                {cartItems.length === 0 ?
+                {cart.length === 0 ?
                     (
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                             <img src={Empty} alt="Carrito vacio" />
@@ -24,12 +28,12 @@ const Cart = ({ cartItems, isOpen, onClose, quitarCarrito }) => {
                             </p>
                         </div>) :
                     (<ul className='cart-item' >
-                        {cartItems.map((item, index) => (
+                        {cart.map((item, index) => (
                             <>
                                 <li key={item.id}>
                                     <p className='item-name'>{item.name}</p>
                                     <p style={{ margin: '0' }}> ${item.price}</p>
-                                    <button onClick={() => quitarCarrito(item)} className='quitarCarrito' >
+                                    <button onClick={() => handleDeleteFromCart(item)} className='quitarCarrito' >
                                         <i className="fa-solid fa-trash-can"></i>
                                     </button>
                                 </li>

@@ -2,10 +2,10 @@ import React from 'react'
 import Header from '../components/estaticos/Header'
 import Footer from '../components/estaticos/Footer'
 
-const AcercaDe = ({ cart, quitarCarrito }) => {
+const AcercaDe = () => {
     return (
         <>
-            <Header cartItems={cart} quitarCarrito={quitarCarrito} />
+            <Header />
             <h1>Acerca De</h1>
             <h2 style={{ color: ' #004080' }}>¿Quiénes somos?</h2>
             <p>
