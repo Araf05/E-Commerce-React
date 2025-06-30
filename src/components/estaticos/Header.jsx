@@ -2,12 +2,9 @@ import React, { useState, useContext } from 'react'
 import Cart from '../Cart'
 import { Link, NavLink } from 'react-router-dom'
 import './styleEstatico.css'
-import { CartContext } from '../../context/CartContext'
 
 const Header = () => {
     const [isCartOpen, setCartOpen] = useState(false)
-
-    const { cart, cargando, productos, error, isAuthenticated, handleAddToCart, handleDeleteFromCart } = useContext(CartContext)
 
     return (
         <header>

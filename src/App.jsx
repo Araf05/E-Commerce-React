@@ -11,33 +11,35 @@ import Login from './pages/Login'
 import Admin from './pages/Admin'
 import RutasProtegidas from './auth/RutasProtegidas'
 import { CartContext } from './context/CartContext'
+import { useAuth } from './context/AuthContext'
 
 function App() {
-  const { cart, cargando, productos, error, isAuthenticated, handleAddToCart, handleDeleteFromCart } = useContext(CartContext)
+  const { cargando, productos } = useContext(CartContext)
+  const { isAuthenticated } = useAuth()
 
 
   return (
-    <Router>
-      <Routes>
 
-        <Route path='/' element={<Home />} />
+    <Routes>
 
-        <Route path='/acercade' element={<AcercaDe />} />
+      <Route path='/' element={<Home />} />
 
-        <Route path='/productos' element={<GaleriaDeProductos />} />
+      <Route path='/acercade' element={<AcercaDe />} />
 
-        <Route path='/productos/:id' element={<DetalleProducto productos={productos} cargando={cargando} />} />
+      <Route path='/productos' element={<GaleriaDeProductos />} />
 
-        <Route path='/contacto' element={<Contactos />} />
+      <Route path='/productos/:id' element={<DetalleProducto productos={productos} cargando={cargando} />} />
 
-        <Route path='/admin' element={<RutasProtegidas isAuthenticated={isAuthenticated}> <Admin /> </RutasProtegidas>} />
+      <Route path='/contacto' element={<Contactos />} />
 
-        <Route path='/login' element={<Login />} />
+      <Route path='/admin' element={<RutasProtegidas isAuthenticated={isAuthenticated}> <Admin /> </RutasProtegidas>} />
 
-        <Route path='*' element={<NotFound />} />
+      <Route path='/login' element={<Login />} />
 
-      </Routes >
-    </Router >
+      <Route path='*' element={<NotFound />} />
+
+    </Routes >
+
   )
 }
 

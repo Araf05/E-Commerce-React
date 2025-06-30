@@ -7,7 +7,6 @@ export const CartProvider = ({ children }) => {
     const [productos, setProductos] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState(false)
-    const [isAuthenticated, setIsAuth] = useState(false)
 
     useEffect(() => {
         fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products')
@@ -53,7 +52,7 @@ export const CartProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={{ cart, cargando, productos, error, isAuthenticated, setIsAuth, handleAddToCart, handleDeleteFromCart }}>
+        <CartContext.Provider value={{ cart, cargando, productos, error, handleAddToCart, handleDeleteFromCart }}>
             {children}
         </CartContext.Provider>
     )

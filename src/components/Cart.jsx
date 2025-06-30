@@ -5,7 +5,7 @@ import { CartContext } from '../context/CartContext'
 
 const Cart = ({ isOpen, onClose }) => {
 
-    const { cart, cargando, productos, error, isAuthenticated, handleAddToCart, handleDeleteFromCart } = useContext(CartContext)
+    const { cart, handleDeleteFromCart } = useContext(CartContext)
 
     return (
         <div className={`cart-drawer ${isOpen ? 'open' : ''}`}>
