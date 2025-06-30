@@ -61,6 +61,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     value={producto.price}
                     onChange={handleChange}
                     min={0}
+                    step="0.01"
                     required
                 />
                 {errores.price && <p style={{ colore: 'red' }}>{errores.price}</p>}
@@ -119,13 +120,17 @@ const FormularioProducto = ({ onAgregar }) => {
                 {errores.type && <p style={{ colore: 'red' }}>{errores.type}</p>}
             </div>
             <div>
-                <label>Destacado</label>
-                <input
-                    type="checkbox"
-                    name='featured'
-                    value={producto.featured}
-                    onChange={handleChange}
-                />
+                <label>
+                    Destacado
+                    <input
+                        type="checkbox"
+                        name='featured'
+                        value={producto.featured}
+                        onChange={handleChange}
+                        style={{ marginLeft: '.5rem' }}
+                    />
+                </label>
+
                 {errores.featured && <p style={{ colore: 'red' }}>{errores.featured}</p>}
             </div>
             <div>
