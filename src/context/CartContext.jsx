@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
     const [isAuthenticated, setIsAuth] = useState(false)
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products/')
+        fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products')
             .then(respuesta => respuesta.json())
             .then(datos => {
                 setTimeout(() => {

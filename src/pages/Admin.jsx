@@ -80,7 +80,7 @@ const Admin = () => {
                                 }}>
                                     <img
                                         src={product.image}
-                                        alt={product.title}
+                                        alt={product.name}
                                         style={{
                                             width: '100px',
                                             maxHeight: '90px',
@@ -95,7 +95,7 @@ const Admin = () => {
                                     width: '100%',
                                     justifyContent: 'center'
                                 }}>
-                                    <span className='nombre' style={{ margin: 'auto', width: '100%', fontWeight: 'bold' }}>{product.title}</span>
+                                    <span className='nombre' style={{ margin: 'auto', width: '100%', fontWeight: 'bold' }}>{product.name}</span>
                                     <span className='precio' style={{ margin: 'auto' }}>${product.price}</span>
                                     <div style={{
                                         display: 'flex',

@@ -86,6 +86,17 @@ const FormularioProducto = ({ onAgregar }) => {
                 />
                 {errores.category && <p style={{ colore: 'red' }}>{errores.category}</p>}
             </div>
+            <div>
+                <label>Tipo</label>
+                <input
+                    type="text"
+                    name='type'
+                    value={producto.type}
+                    onChange={handleChange}
+                    required
+                />
+                {errores.type && <p style={{ colore: 'red' }}>{errores.type}</p>}
+            </div>
             <button type='submit'>Crear</button>
         </form>
     )

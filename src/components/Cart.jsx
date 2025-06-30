@@ -27,7 +27,7 @@ const Cart = ({ cartItems, isOpen, onClose, quitarCarrito }) => {
                         {cartItems.map((item, index) => (
                             <>
                                 <li key={item.id}>
-                                    <p className='item-name'>{item.title}</p>
+                                    <p className='item-name'>{item.name}</p>
                                     <p style={{ margin: '0' }}> ${item.price}</p>
                                     <button onClick={() => quitarCarrito(item)} className='quitarCarrito' >
                                         <i className="fa-solid fa-trash-can"></i>

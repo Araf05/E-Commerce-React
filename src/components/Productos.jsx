@@ -15,10 +15,10 @@ const Productos = ({ producto, agregarCarrito }) => {
                 <img src={producto.image} alt="" className='imagen' />
             </div>
 
-            <h3 className='nombre' title={producto.title}>{producto.title}</h3>
+            <h3 className='nombre' title={producto.name}>{producto.name}</h3>
 
             <p className='precio'>${producto.price}</p>
-            <p className='stock'>{producto.rating.count}</p>
+            <p className='stock'>{producto.stock}</p>
 
             <div className='cantidadContainer'>
                 <button onClick={decrease} className='qtyButton'>-</button>
