@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 function FormularioEdicion({ productoSeleccionado, onActualizar }) {
     const [producto, setProducto] = useState(productoSeleccionado)
+    const [errores, setErrores] = useState({})
 
     useEffect(() => {
         setProducto(productoSeleccionado)

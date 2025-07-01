@@ -61,20 +61,22 @@ const Admin = () => {
 
     const actualizarProducto = async (producto) => {
         try {
-            const respuesta = await fetch(`apiURL/${producto.id}`, {
+            const respuesta = await fetch(`${apiURL}/${producto.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(producto)
             })
-            if (!respuesta.ok) throw Error('Error al actualizar el producto')
+            if (!respuesta.ok) {
+                throw Error('Error al actualizar el producto')
+            }
             const data = await respuesta.json()
             alert('Producto actualizado correctamente')
             setOpenEditor(false)
             setSeleccionado(null)
             cargarProductos()
-            
+
         } catch (error) {
-            console.log(error.message)
+            console.log('Hubo un problema ', error)
         }
     }
 
@@ -159,8 +161,8 @@ const Admin = () => {
                                     }}>
                                         <button
                                             onClick={() => {
-                                                setOpenEditor()
                                                 setSeleccionado(product)
+                                                setOpenEditor(true)
                                             }}
                                             style={{
                                                 fontSize: '12px',
