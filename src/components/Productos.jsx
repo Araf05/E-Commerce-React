@@ -6,8 +6,8 @@ const Productos = ({ producto, agregarCarrito }) => {
 
     const [cantidad, setCantidad] = useState(1)
 
-    const increase = () => setCantidad(prev < producto.rating.count ? prev + 1 : prev)
-    const decrease = () => setCantidad(prev > producto.rating.count ? prev - 1 : 1)
+    const increase = () => setCantidad(cantidad < producto.stock ? cantidad + 1 : cantidad)
+    const decrease = () => setCantidad(cantidad > 1 ? cantidad - 1 : 1)
 
     return (
         <section className='card'>
