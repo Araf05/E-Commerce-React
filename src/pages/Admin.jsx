@@ -7,9 +7,10 @@ const Admin = () => {
     const [productos, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [open, setOpen] = useState(false)
+    const apiURL = 'https://6861b8d996f0cc4e34b75009.mockapi.io/store/products'
 
     useEffect(() => {
-        fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products')
+        fetch(apiURL)
             .then((response) => response.json())
             .then((data) => {
                 setTimeout(() => {
@@ -24,9 +25,19 @@ const Admin = () => {
             })
     }, [])
 
+    const cargarProductos = async () => {
+        try {
+            const res = await fetch(apiURL)
+            const data = await res.json()
+            setProducts(data)
+        } catch (error) {
+            console.log('Error al cargar productos ', error)
+        }
+    }
+
     const agregarProducto = async (producto) => {
         try {
-            const respuesta = await fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products', {
+            const respuesta = await fetch(apiURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(producto)
@@ -38,10 +49,27 @@ const Admin = () => {
             console.log(data)
             console.log({ producto })
             alert('Producto agregado correctamente')
+            cargarProductos()
         } catch (error) {
             console.log(error.message)
         }
         console.log({ productos })
+    }
+
+    const eliminarProducto = async (id) => {
+        const confirmar = window.confirm('¿Esta seguro de eliminar el producto?')
+        if (confirmar) {
+            try {
+                const respuesta = await fetch(`${apiURL}/${id}`, {
+                    method: 'DELETE'
+                })
+                if (!respuesta.ok) throw Error('Error al eliminar producto')
+                alert('Producto eliminado correctamente')
+                cargarProductos()
+            } catch (error) {
+                alert('Hubo un problema a eliminar el producto')
+            }
+        }
     }
 
     return (
@@ -105,8 +133,26 @@ const Admin = () => {
                                         margin: 'auto',
                                         gap: '10px'
                                     }}>
-                                        <button style={{ fontSize: '12px', width: '80px', backgroundColor: 'grey', color: 'white' }}>Editar</button>
-                                        <button style={{ fontSize: '12px', width: '80px', backgroundColor: 'red', color: 'white' }}>Eliminar</button>
+                                        <button
+                                            style={{
+                                                fontSize: '12px',
+                                                width: '80px',
+                                                backgroundColor: 'grey',
+                                                color: 'white'
+                                            }}>
+                                            Editar
+                                        </button>
+
+                                        <button
+                                            onClick={() => eliminarProducto(product.id)}
+                                            style={{
+                                                fontSize: '12px',
+                                                width: '80px',
+                                                backgroundColor: 'red',
+                                                color: 'white'
+                                            }}>
+                                            Eliminar
+                                        </button>
                                     </div>
                                 </div>
                             </li>
