@@ -13,11 +13,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const isAuthenticated = localStorage.getItem('isAuth') === 'true'
-        if(isAuthenticated) {
+        if (isAuthenticated) {
             setIsAuth(true)
             navigate('/admin')
         }
-    })
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()

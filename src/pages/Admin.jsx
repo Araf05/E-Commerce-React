@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react'
 import AdminHeader from '../components/estaticos/AdminHeader'
 import cargando from '../assets/load-1110_256.gif'
 import FormularioProducto from '../components/FormularioProducto'
+import FormularioEdicion from '../components/FormularioEdicion'
 
 const Admin = () => {
     const [productos, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
     const [open, setOpen] = useState(false)
+    const [seleccionado, setSeleccionado] = useState(null)
+    const [openEditor, setOpenEditor] = useState(false)
     const apiURL = 'https://6861b8d996f0cc4e34b75009.mockapi.io/store/products'
 
     useEffect(() => {
@@ -56,6 +59,26 @@ const Admin = () => {
         console.log({ productos })
     }
 
+    const actualizarProducto = async (producto) => {
+        try {
+            const respuesta = await fetch(`apiURL/${producto.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(producto)
+            })
+            if (!respuesta.ok) throw Error('Error al actualizar el producto')
+            const data = await respuesta.json()
+            alert('Producto actualizado correctamente')
+            setOpenEditor(false)
+            setSeleccionado(null)
+            cargarProductos()
+            
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+
     const eliminarProducto = async (id) => {
         const confirmar = window.confirm('¿Esta seguro de eliminar el producto?')
         if (confirmar) {
@@ -65,6 +88,7 @@ const Admin = () => {
                 })
                 if (!respuesta.ok) throw Error('Error al eliminar producto')
                 alert('Producto eliminado correctamente')
+                setOpen(false)
                 cargarProductos()
             } catch (error) {
                 alert('Hubo un problema a eliminar el producto')
@@ -134,6 +158,10 @@ const Admin = () => {
                                         gap: '10px'
                                     }}>
                                         <button
+                                            onClick={() => {
+                                                setOpenEditor()
+                                                setSeleccionado(product)
+                                            }}
                                             style={{
                                                 fontSize: '12px',
                                                 width: '80px',
@@ -160,6 +188,7 @@ const Admin = () => {
                     </ul>
                     <button onClick={() => setOpen(true)}>Agregar nuevo producto</button>
                     {open && (<FormularioProducto onAgregar={agregarProducto} />)}
+                    {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto} />)}
 
                 </>
 
