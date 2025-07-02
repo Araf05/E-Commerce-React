@@ -7,7 +7,7 @@ import banner from '../assets/banner2.jpg'
 import { CartContext } from '../context/CartContext'
 
 const GaleriaDeProductos = () => {
-    const { cart, cargando, productos, handleAddToCart, handleDeleteFromCart } = useContext(CartContext)
+    const { cart, cargando, handleDeleteFromCart } = useContext(CartContext)
     
 
     return (
@@ -18,7 +18,7 @@ const GaleriaDeProductos = () => {
             </div>
             {
                 cargando ? <img src={loading} alt='loading' /> :
-                    <ProductList agregarCarrito={handleAddToCart} productos={productos} />                        
+                    <ProductList/>                        
             }
             <Footer />
         </>
