@@ -131,6 +131,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
             </div>
             <button type='submit'>Editar</button>
+            <button>Cancelar</button>
         </form>
     )
 }
