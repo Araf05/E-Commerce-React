@@ -9,11 +9,14 @@ export const AuthProvider = ({ children }) => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState({})
     const [isAuthenticated, setIsAuth] = useState(false)
+    const [role, setRole] = useState('')
     const navigate = useNavigate()
 
     useEffect(() => {
         const isAuthenticated = localStorage.getItem('isAuth') === 'true'
-        if (isAuthenticated) {
+        const userRole = localStorage.getItem('role') || ''
+        if (isAuthenticated && userRole === 'admin') {
+            setRole(userRole)
             setIsAuth(true)
             navigate('/admin')
         }
@@ -44,6 +47,7 @@ export const AuthProvider = ({ children }) => {
                 if (foundUser.role === 'admin') {
                     setIsAuth(true)
                     localStorage.setItem('isAuth', true)
+                    localStorage.setItem('role', foundUser.role)
                     navigate('/admin')
                 } else {
                     navigate('/')
