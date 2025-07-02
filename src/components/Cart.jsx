@@ -5,7 +5,8 @@ import { CartContext } from '../context/CartContext'
 
 const Cart = ({ isOpen, onClose }) => {
 
-    const { cart, handleDeleteFromCart } = useContext(CartContext)
+    const { cart, handleDeleteFromCart, vaciarCarrito } = useContext(CartContext)
+
 
     return (
         <div className={`cart-drawer ${isOpen ? 'open' : ''}`}>
@@ -27,21 +28,28 @@ const Cart = ({ isOpen, onClose }) => {
                                 <a href="https://iconscout.com/illustrations/empty-box" class="text-underline font-size-sm" target="_blank">Empty Box</a> by <a href="https://iconscout.com/es/contributors/dominika-fasciszewska/:assets" class="text-underline font-size-sm">Dominika Faściszewska</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>
                             </p>
                         </div>) :
-                    (<ul className='cart-item' >
-                        {cart.map((item, index) => (
-                            <>
-                                <li key={item.id}>
-                                    <p className='item-name'>{item.name}</p>
-                                    <p style={{ margin: '0' }}> ${item.price}</p>
-                                    <button onClick={() => handleDeleteFromCart(item)} className='quitarCarrito' >
-                                        <i className="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </li>
-                            </>
-                        ))}
-                    </ul>)
+                    (<>
+                        <ul className='cart-item' >
+                            {cart.map((item, index) => (
+                                <>
+                                    <li key={item.id}>
+                                        <p className='item-name'>{item.name}</p>
+                                        <p>{item.quantity}</p>
+                                        <p style={{ margin: '0' }}> ${item.price}</p>
+                                        <button onClick={() => handleDeleteFromCart(item)} className='quitarCarrito' >
+                                            <i className="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </li>
+                                </>
+                            ))}
+                        </ul>
+                        < div >
+                            <button onClick={vaciarCarrito}>Vaciar carrito</button>
+                        </div>
+                    </>)
                 }
             </div>
+
         </div>
     )
 }

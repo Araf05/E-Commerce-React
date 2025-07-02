@@ -18,7 +18,7 @@ const Productos = ({ producto, agregarCarrito }) => {
             <h3 className='nombre' title={producto.name}>{producto.name}</h3>
 
             <p className='precio'>${producto.price}</p>
-            <p className='stock'>{producto.stock}</p>
+            <p className='stock'>stock disponible: {producto.stock}</p>
 
             <div className='cantidadContainer'>
                 <button onClick={decrease} className='qtyButton'>-</button>
@@ -26,7 +26,7 @@ const Productos = ({ producto, agregarCarrito }) => {
                 <button onClick={increase} className='qtyButton'>+</button>
             </div>
 
-            <button onClick={() => agregarCarrito(producto)}>Agregar al carrito</button>
+            <button onClick={() => agregarCarrito(producto)} disabled={producto.stock <= 0}>Agregar al carrito</button>
 
             <Link to={`/productos/${producto.id}`} >Ver más</Link>
 
