@@ -25,9 +25,9 @@ export const CartProvider = ({ children }) => {
             })
     }, [])
 
-    const productosFiltrados =
-        productos.filter((producto) => producto?.nombre.toLowerCase().includes(busqueda.toLowerCase()))
-
+    const productosFiltrados = productos.filter((producto) =>
+        (producto?.name || '').toLowerCase().includes(busqueda.toLowerCase())
+    )
 
     const handleAddToCart = (product) => {
         const productInCart = cart.find((item) => item.id === product.id)

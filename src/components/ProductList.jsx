@@ -5,6 +5,9 @@ import { CartContext } from '../context/CartContext'
 const ProductList = () => {
     const { productos, busqueda, productosFiltrados, setBusqueda } = useContext(CartContext)
 
+    console.log(busqueda);
+
+
     return (
         <>
             <h2>Galería de productos</h2>
@@ -16,7 +19,7 @@ const ProductList = () => {
             />
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', justifyContent: 'space-evenly' }}>
                 {
-                    productos.map(producto => (
+                    productosFiltrados.map(producto => (
                         <Productos key={producto.id} producto={producto} />
                     ))
                 }
