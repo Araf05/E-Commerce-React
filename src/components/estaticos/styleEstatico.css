@@ -52,6 +52,7 @@ header {
                     rgba(173, 89, 212, 1) 50%,
                     rgba(133, 38, 254, 1) 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
     }
