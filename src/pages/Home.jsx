@@ -11,20 +11,16 @@ import { CartContext } from '../context/CartContext'
 const Home = () => {
     const { cargando } = useContext(CartContext)
 
-
     return (
         <>
             <Header />
             <main>
                 <Carousel ofertas={ofertas} promociones={promociones} />
-                {/* <div style={{ width: '100%' }}>
-                    <img style={{ width: '100%', height: 'auto', maxHeight: '400px', objectFit: 'content', display: 'block', margin: '0 auto' }} src={banner} alt="banner" />
-                </div> */}
                 {
                     cargando ? <img src={loading} alt='loading' /> :
                         <ProductList />
                 }
-            </main>
+            </main >
             <Footer />
         </>
     )

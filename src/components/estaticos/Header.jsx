@@ -13,7 +13,7 @@ const Header = () => {
         <header>
             <nav className="hRow navbar navbar-expand-lg  bg-body-tertiary">
                 <div>
-                    <ul style={{ width: '100vw' }}>
+                    <ul style={{ width: '100vw', height: '8vh' }}>
                         <li className='cartnav'>
                             <button className='btnCart' onClick={() => setCartOpen(true)}>
                                 <i className="fa-solid fa-cart-shopping"></i>

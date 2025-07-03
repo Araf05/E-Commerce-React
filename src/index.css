@@ -13,6 +13,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+main {
+  padding-top: 46px;
+}
+
+@media screen and (width>400px) {
+  main {
+    padding-top: 35px;
+  }
+}
+
+@media screen and (width>995px) {
+  main {
+    padding-top: 90px;
+  }
+}
+
+
+
 a {
   font-weight: 500;
   color: #646cff;

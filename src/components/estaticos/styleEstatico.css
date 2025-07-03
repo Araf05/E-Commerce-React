@@ -11,10 +11,6 @@ header {
     z-index: 3;
 }
 
-main {
-    padding-top: 60px;
-}
-
 .navbar {
     padding: 0 !important;
 }
@@ -35,6 +31,7 @@ main {
         display: flex;
         justify-content: end;
         gap: 20px;
+        align-items: center;
     }
 
     .btnCart {
