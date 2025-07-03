@@ -4,17 +4,36 @@
     padding: 0;
 }
 
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+main {
+    padding-top: 60px;
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
 .hRow {
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     background-color: rgb(255, 255, 255);
     color: #333;
-    padding: 10px;
     overflow: hidden;
-    height: 50px;
+    width: 100%;
 
     ul {
+        list-style: none;
+        margin: 0;
+        padding: 10px;
         display: flex;
+        justify-content: end;
         gap: 20px;
     }
 
@@ -42,18 +61,22 @@
 
 }
 
-nav {
+.colapsable {
     background-color: #333;
     color: white;
     padding: 10px;
-}
-
-ul {
-    list-style: none;
     display: flex;
     justify-content: space-around;
-    margin: 0;
     align-items: center;
+    width: 100%;
+}
+
+
+ul.navbar-nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
 
     .link {
         color: white;
@@ -67,7 +90,6 @@ ul {
     .active {
         color: #5fe4d4;
         font-weight: bold;
-        border-bottom: 2px solid #5fe4d4;
     }
 
     .pending {
