@@ -6,7 +6,7 @@ import AcercaDe from './pages/AcercaDe'
 import GaleriaDeProductos from './pages/GaleriaDeProductos'
 import Contactos from './pages/Contactos'
 import NotFound from './pages/NotFound'
-import DetalleProducto from './components/DetalleProducto'
+import Producto from './pages/Producto'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
 import RutasProtegidas from './auth/RutasProtegidas'
@@ -28,7 +28,7 @@ function App() {
 
       <Route path='/productos' element={<GaleriaDeProductos />} />
 
-      <Route path='/productos/:id' element={<DetalleProducto productos={productos} cargando={cargando} />} />
+      <Route path='/productos/:id' element={<Producto productos={productos} cargando={cargando} />} />
 
       <Route path='/contacto' element={<Contactos />} />
 
