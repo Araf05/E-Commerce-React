@@ -16,7 +16,7 @@ const Productos = ({ producto }) => {
             <div className='imagenContainer'>
                 <img src={producto.image} alt="" className='imagen' />
             </div>
-
+            <p style={{ fontSize: '.8rem' }}><strong>{producto.brand}</strong></p>
             <h3 className='nombre' title={producto.name}>{producto.name}</h3>
 
             <p className='precio'>${producto.price}</p>
