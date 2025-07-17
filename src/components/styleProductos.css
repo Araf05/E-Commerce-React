@@ -86,6 +86,7 @@
     border: none;
     background-color: #5fe4d4;
     border-radius: 50px;
+    color: #333;
 }
 
 .primary:hover, .qtyButton:hover {
