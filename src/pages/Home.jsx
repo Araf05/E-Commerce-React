@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Header from '../components/estaticos/Header'
 import Footer from '../components/estaticos/Footer'
 import ProductList from '../components/ProductList'
-import loading from '../assets/load-1110_256.gif'
+import cartLoading from '../assets/shopping-cart.webm'
 import ofertas from '../assets/banner.jpg'
 import promociones from '../assets/banner2.jpg'
 import Carousel from '../components/estaticos/Carousel'
@@ -17,8 +17,20 @@ const Home = () => {
             <main>
                 <Carousel ofertas={ofertas} promociones={promociones} />
                 {
-                    cargando ? <img src={loading} alt='loading' /> :
-                        <ProductList />
+                    cargando ?
+                        (
+                            <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+
+                                <video autoPlay loop muted playsInline>
+                                    <source
+                                        src={cartLoading} type='video/webm'
+                                    />
+                                </video>
+                                <h3>Cargando...</h3>
+                            </div>
+                        ) : (
+                            <ProductList />
+                        )
                 }
             </main >
             <Footer />

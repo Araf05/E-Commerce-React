@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import AdminHeader from '../components/estaticos/AdminHeader'
-import cargando from '../assets/load-1110_256.gif'
+import cartLoading from '../assets/shopping-cart.webm'
 import FormularioProducto from '../components/FormularioProducto'
 import FormularioEdicion from '../components/FormularioEdicion'
 import { AdminContext } from '../context/AdminContext.jsx'
@@ -20,7 +20,15 @@ const Admin = () => {
     return (
         <div >
             {loading ? (
-                <img src={cargando} alt='loading' />
+                <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+
+                    <video autoPlay loop muted playsInline>
+                        <source
+                            src={cartLoading} type='video/webm'
+                        />
+                    </video>
+                    <h3>Cargando...</h3>
+                </div>
             ) : (
                 <>
                     <AdminHeader />

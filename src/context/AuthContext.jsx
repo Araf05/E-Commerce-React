@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const isAuthenticated = localStorage.getItem('isAuth') === 'true'
+        const isAuthenticated = localStorage.getItem('isAuth') === 'false'
         const userRole = localStorage.getItem('role') || ''
         if (isAuthenticated && userRole === 'admin') {
             setRole(userRole)
