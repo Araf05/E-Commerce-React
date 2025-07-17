@@ -8,6 +8,7 @@ export const CartProvider = ({ children }) => {
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState(false)
     const [busqueda, setBusqueda] = useState('')
+    const [comprar, setComprar] = useState(false)
 
     useEffect(() => {
         fetch('https://6861b8d996f0cc4e34b75009.mockapi.io/store/products')
@@ -62,6 +63,16 @@ export const CartProvider = ({ children }) => {
         return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)
     }
 
+    const finalizarCompra = () => {
+        vaciarCarrito()
+        setComprar(true)
+
+        // Para que se reinicie automáticamente después de 3 segundos
+        setTimeout(() => {
+            setComprar(false);
+        }, 3000);
+    }
+
     return (
         <CartContext.Provider value={{
             cart,
@@ -73,7 +84,9 @@ export const CartProvider = ({ children }) => {
             vaciarCarrito,
             productosFiltrados,
             busqueda, setBusqueda,
-            getTotal
+            getTotal,
+            finalizarCompra,
+            comprar, setComprar
         }}>
             {children}
         </CartContext.Provider>
