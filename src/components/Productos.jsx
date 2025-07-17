@@ -8,8 +8,8 @@ const Productos = ({ producto }) => {
 
     const [cantidad, setCantidad] = useState(1)
 
-    const increase = () => setCantidad(cantidad < producto.stock ? cantidad + 1 : cantidad)
-    const decrease = () => setCantidad(cantidad > 1 ? cantidad - 1 : 1)
+    // const increase = () => setCantidad(cantidad < producto.stock ? cantidad + 1 : cantidad)
+    // const decrease = () => setCantidad(cantidad > 1 ? cantidad - 1 : 1)
 
     return (
         <section className='card'>
@@ -22,13 +22,13 @@ const Productos = ({ producto }) => {
             <p className='precio'>${producto.price}</p>
             <p className='stock'>stock disponible: {producto.stock}</p>
 
-            <div className='cantidadContainer'>
+            {/* <div className='cantidadContainer'>
                 <button onClick={decrease} className='qtyButton'>-</button>
                 <span>{cantidad}</span>
                 <button onClick={increase} className='qtyButton'>+</button>
-            </div>
+            </div> */}
 
-            <button onClick={() => handleAddToCart(producto)} disabled={producto.stock <= 0}>Agregar al carrito</button>
+            <button className='primary' onClick={() => handleAddToCart(producto)} disabled={producto.stock <= 0}>Agregar al carrito</button>
 
             <Link to={`/productos/${producto.id}`} >Ver más</Link>
 

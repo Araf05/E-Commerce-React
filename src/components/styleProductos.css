@@ -80,3 +80,15 @@
     transition: background-color 0.2s;
 }
 
+.primary {
+    border: 1px solid transparent;
+}
+
+.primary:hover {
+    background: linear-gradient(90deg,
+            #5fe4d4 0%,
+            rgba(173, 89, 212, 1) 50%,
+            rgba(133, 38, 254, 1) 100%);
+    color: #f9f9f9;
+    border: transparent;
+}

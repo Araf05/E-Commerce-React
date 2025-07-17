@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import cartLoading from '../assets/shopping-cart.webm'
+import { CartContext } from '../context/CartContext'
+
 
 const DetalleProducto = ({ productos, cargando }) => {
+    const { handleAddToCart } = useContext(CartContext)
+
     console.log(productos)
 
     const { id } = useParams()
@@ -65,7 +69,13 @@ const DetalleProducto = ({ productos, cargando }) => {
                                         </label>
                                     </div>
                                     <hr />
-                                    <button style={{ width: 'fit-content' }}>Agregar</button>
+                                    <button
+                                        className='primary'
+                                        style={{ width: '100%' }}
+                                        onClick={() => handleAddToCart(product)} disabled={product.stock <= 0}
+                                    >
+                                        Agregar
+                                    </button>
                                     <p>Stock disponible: {product.stock}</p>
 
                                 </div>
@@ -77,14 +87,15 @@ const DetalleProducto = ({ productos, cargando }) => {
                                 <div style={{ marginTop: '1rem' }}>
                                     <h4>Características:</h4>
                                     <ul>
-                                        <li><strong>Categoría: </strong>{product.category}</li>
-                                        <li><strong>Marca: </strong>{product.brand}</li>
+                                        <li>Categoría: {product.category}</li>
+                                        <li>Tipo de producto: {product.type}</li>
+                                        <li>Marca: {product.brand}</li>
                                         {product.characteristics && Object.keys(product.characteristics).length > 0 && (
                                             <div>
                                                 {
                                                     Object.entries(product.characteristics).map(([key, value]) => (
                                                         <li key={key}>
-                                                            <strong>{key}: </strong>{value || 'N/A'}
+                                                            {key[0].toUpperCase() + key.slice(1)}: {value || 'N/A'}
                                                         </li>
                                                     ))
                                                 }
