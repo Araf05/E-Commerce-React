@@ -12,9 +12,7 @@ const Header = () => {
     return (
         <header>
             <nav className="hRow navbar navbar-expand-lg  bg-body-tertiary">
-
                 <div>
-
                     <ul style={{ width: '100vw', height: '8vh' }}>
                         <li className='navbanner'>
                             <Link to='/' className='link'>
