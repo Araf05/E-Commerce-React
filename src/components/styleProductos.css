@@ -80,6 +80,7 @@
     transition: background-color 0.2s;
 }
 
+
 .primary {
     width: 100%;
     border: none;
@@ -87,7 +88,7 @@
     border-radius: 50px;
 }
 
-.primary:hover {
+.primary:hover, .qtyButton:hover {
     background: linear-gradient(90deg,
             #5fe4d4 0%,
             rgba(173, 89, 212, 1) 50%,

@@ -5,7 +5,7 @@ import { CartContext } from '../context/CartContext'
 
 const Cart = ({ isOpen, onClose }) => {
 
-    const { cart, handleDeleteFromCart, vaciarCarrito, handleAddToCart } = useContext(CartContext)
+    const { cart, handleDeleteFromCart, vaciarCarrito, handleAddToCart, getTotal } = useContext(CartContext)
 
 
 
@@ -40,36 +40,48 @@ const Cart = ({ isOpen, onClose }) => {
                                                 <i className="fa-solid fa-trash-can"></i>
                                             </button>
                                         </div>
-                                        <div style={{ display: 'flex',  width: '100%', gap:'15px' }}>
+                                        <div style={{ display: 'flex', width: '100%', gap: '15px' }}>
                                             <div className='image-box'>
                                                 <img src={item.image} alt={item.name} title={item.name} />
                                             </div>
 
-                                            <div>
+                                            <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap' }}>
                                                 <p style={{ fontSize: '.8rem', margin: '0' }}>Item No. ITM-{item.id}</p>
-                                                <h5>{item.brand}</h5>
+                                                <h6>{item.brand}</h6>
                                                 <p>{item.type}</p>
                                                 {item.category === 'Indumentaria' ?
                                                     <p>Talle: {item.characteristics.size} </p> :
                                                     <p>Material: {item.characteristics.material} </p>
                                                 }
-                                                <div className='cantidadContainer'>
-                                                    <button onClick={() => handleDeleteFromCart(item)} className='qtyButton'>-</button>
-                                                    <span>{item.quantity}</span>
-                                                    <button onClick={() => handleAddToCart(item)} className='qtyButton'>+</button>
-                                                </div>
-                                                <div>
-                                                    <p style={{ margin: '0', fontSize: '12px' }}>Total</p>
-                                                    <p style={{ margin: '0' }}> ${item.price}</p>
-                                                </div>
+
                                             </div>
                                         </div>
+                                        <div style={{ display: 'flex', gap: '15px' }}>
+                                            <div className='cantidadContainer'>
+                                                <button onClick={() => handleDeleteFromCart(item)} className='qtyButton'>-</button>
+                                                <span>{item.quantity}</span>
+                                                <button onClick={() => handleAddToCart(item)} className='qtyButton'>+</button>
+                                            </div>
+                                            <div>
+                                                <p style={{ margin: '0', fontSize: '12px' }}>Total</p>
+                                                <p style={{ margin: '0' }}> ${(item.price * item.quantity).toFixed(2)}</p>
+                                            </div>
+                                        </div>
+
                                     </li>
                                 </>
                             ))}
                         </ul>
-                        < div >
+
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <p>Total: </p>
+                            <p>${getTotal()}</p>
+                        </div>
+                        <hr />
+                        < div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }} >
                             <button className='delete' onClick={vaciarCarrito}>Vaciar carrito</button>
+
+                            <button className='primary'>Comprar ahora</button>
                         </div>
                     </>)
                 }
