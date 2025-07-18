@@ -162,6 +162,64 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 />
                 {errores.brand && <p style={{ color: 'red' }}>{errores.brand}</p>}
             </div>
+            <div>
+                <label>Origen</label>
+                <input
+                    type="text"
+                    name='origen'
+                    value={producto.characteristics.origen}
+                    onChange={handleChange}
+                />
+                {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
+            </div>
+            <div>
+                <label>Material</label>
+                <input
+                    type="text"
+                    name='material'
+                    value={producto.characteristics.material}
+                    onChange={handleChange}
+                />
+                {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
+            </div>
+            {producto.category === 'Indumentaria' &&
+                <>
+                    <div>
+                        <label>Talle</label>
+                        <input
+                            type="text"
+                            name='size'
+                            value={producto.characteristics.size || ''}
+                            onChange={handleChange}
+                        />
+                        {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
+                    </div>
+                    <div>
+                        <label>Color</label>
+                        <input
+                            type="text"
+                            name='color'
+                            value={producto.characteristics.color || ''}
+                            onChange={handleChange}
+                        />
+                        {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
+                    </div>
+                </>
+            }
+
+            {producto.category === 'Joyería' &&
+                <div>
+                    <label>Piedra</label>
+                    <input
+                        type="text"
+                        name='stone'
+                        value={producto.characteristics.stone || ''}
+                        onChange={handleChange}
+                    />
+                    {errores.stone && <p style={{ color: 'red' }}>{errores.stone}</p>}
+                </div>
+            }
+
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
                 <button className='secondary' type='submit'>Editar</button>
                 <button className='delete' onClick={() => setOpenEditor(false)}>Cancelar</button>
