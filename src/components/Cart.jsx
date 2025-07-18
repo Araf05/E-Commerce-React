@@ -3,11 +3,12 @@ import './styleCart.css'
 import Empty from '../assets/empty-box.svg'
 import check from '../assets/check.webm'
 import { CartContext } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 
 const Cart = ({ isOpen, onClose }) => {
 
     const { cart, handleDeleteFromCart, vaciarCarrito, handleAddToCart, getTotal, finalizarCompra, comprar } = useContext(CartContext)
-
+    const { isAuthenticated, role } = useAuth()
 
 
     return (
@@ -94,13 +95,20 @@ const Cart = ({ isOpen, onClose }) => {
                             < div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }} >
                                 <button className='delete' onClick={vaciarCarrito}>Vaciar carrito</button>
 
-                                <button className='primary' onClick={finalizarCompra}>Comprar ahora</button>
-                            </div>
-                        </>)
+                                <button
+                                    className='primary'
+                                    onClick={finalizarCompra}
+                                    disabled={!isAuthenticated}
+                                    title={!isAuthenticated ? 'Iniciá sesión para continuar con la compra': ''}
+                                >
+                                        Comprar ahora
+                                </button>
+                        </div>
+            </>)
                 }
-            </div>
-
         </div>
+
+        </div >
     )
 }
 

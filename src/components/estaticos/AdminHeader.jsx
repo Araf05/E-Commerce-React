@@ -2,8 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import './styleEstatico.css'
+import { useAuth } from '../../context/AuthContext'
 
 const AdminHeader = () => {
+    const { isAuthenticated, logout } = useAuth()
+
     return (
         <>
             <header>
@@ -15,16 +18,17 @@ const AdminHeader = () => {
                                     <h3>Shop</h3>
                                 </Link>
                             </li>
-                            <li>
-                                <button>
-                                    <i className='fa-solid fa-right-from-bracket'></i>
-                                </button>
-                            </li>
-                            <li>
-                                <Link to='/login' className='link'>
-                                    <i className="fa-solid fa-user"></i>
-                                </Link>
-                            </li>
+                            {
+                                isAuthenticated ? (
+                                    <button className='link' onClick={logout} style={{ background: 'none', border: 'none' }}>
+                                        <i className="fa-solid fa-right-from-bracket"></i>
+                                    </button>
+                                ) : (
+                                    <Link to='/login' className='link'>
+                                        <i className="fa-solid fa-user"></i>
+                                    </Link>
+                                )
+                            }
                             <li>
                                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span className="navbar-toggler-icon"></span>

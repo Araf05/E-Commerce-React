@@ -4,7 +4,11 @@ import { toast } from "react-toastify";
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
+    // const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(() => {
+        const storedCart = localStorage.getItem('cart')
+        return storedCart ? JSON.parse(storedCart) : []
+    })
     const [productos, setProductos] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState(false)
@@ -26,6 +30,10 @@ export const CartProvider = ({ children }) => {
                 setError(true)
             })
     }, [])
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
 
     const productosFiltrados = productos.filter((producto) =>
         (producto?.name || '').toLowerCase().includes(busqueda.toLowerCase())

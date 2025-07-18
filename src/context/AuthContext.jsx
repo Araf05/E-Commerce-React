@@ -12,13 +12,29 @@ export const AuthProvider = ({ children }) => {
     const [role, setRole] = useState('')
     const navigate = useNavigate()
 
+    // useEffect(() => {
+    //     const isAuthenticated = localStorage.getItem('isAuth') === 'false'
+    //     const userRole = localStorage.getItem('role') || ''
+    //     if (isAuthenticated && userRole === 'admin') {
+    //         setRole(userRole)
+    //         setIsAuth(true)
+    //         navigate('/admin')
+    //     }
+    // }, [])
+
     useEffect(() => {
-        const isAuthenticated = localStorage.getItem('isAuth') === 'false'
+        const isAuth = localStorage.getItem('isAuth') === 'true'
         const userRole = localStorage.getItem('role') || ''
-        if (isAuthenticated && userRole === 'admin') {
+
+        if (isAuth) {
             setRole(userRole)
             setIsAuth(true)
-            navigate('/admin')
+
+             if (userRole === 'admin') {
+                 navigate('/admin')
+             } else {
+                 navigate('/')
+             }
         }
     }, [])
 
@@ -41,13 +57,28 @@ export const AuthProvider = ({ children }) => {
                 (user) => user.email === email && user.password === password
             )
 
+            //  if (!foundUser) {
+            //      setError({ email: 'Las credenciales son invalidas', password: 'Las credenciales son invalidas' })
+            //  } else {
+            //      if (foundUser.role === 'admin') {
+            //          setIsAuth(true)
+            //          localStorage.setItem('isAuth', true)
+            //          localStorage.setItem('role', foundUser.role)
+            //          navigate('/admin')
+            //      } else {
+            //          navigate('/')
+            //      }
+            //  }
+
             if (!foundUser) {
-                setError({ email: 'Las credenciales son invalidas', password: 'Las credenciales son invalidas' })
+                setError({ email: 'Las credenciales son inválidas', password: 'Las credenciales son inválidas' })
             } else {
+                setIsAuth(true)
+                setRole(foundUser.role)
+                localStorage.setItem('isAuth', true)
+                localStorage.setItem('role', foundUser.role)
+
                 if (foundUser.role === 'admin') {
-                    setIsAuth(true)
-                    localStorage.setItem('isAuth', true)
-                    localStorage.setItem('role', foundUser.role)
                     navigate('/admin')
                 } else {
                     navigate('/')
@@ -60,9 +91,18 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = () => {
+        setIsAuth(false)
+        setRole('')
+        localStorage.removeItem('isAuth')
+        localStorage.removeItem('role')
+        localStorage.removeItem('cart')
+        navigate('/')
+    }
+
 
     return (
-        < AuthContext.Provider value={{ email, setEmail, password, setPassword, handleSubmit, error, isAuthenticated, setIsAuth }}>
+        < AuthContext.Provider value={{ email, setEmail, password, setPassword, handleSubmit, error, isAuthenticated, setIsAuth, logout, role, setRole }}>
             {children}
         </AuthContext.Provider >
     )
