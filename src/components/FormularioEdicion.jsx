@@ -33,7 +33,6 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
             e.preventDefault()
             onActualizar(producto)
         }}>
-            <h2>Editar producto</h2>
             <div>
                 <label>ID:</label>
                 <input
@@ -157,8 +156,9 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='brand'
-                    value={producto.brand || ''}
+                    value={producto.brand}
                     onChange={handleChange}
+                    required
                 />
                 {errores.brand && <p style={{ color: 'red' }}>{errores.brand}</p>}
             </div>
@@ -167,8 +167,9 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='origen'
-                    value={producto.characteristics.origen || ''}
+                    value={producto.characteristics.origen}
                     onChange={handleChange}
+                    required
                 />
                 {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
             </div>
@@ -177,8 +178,9 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='material'
-                    value={producto.characteristics.material || ''}
+                    value={producto.characteristics.material}
                     onChange={handleChange}
+                    required
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
             </div>
@@ -189,8 +191,9 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                         <input
                             type="text"
                             name='size'
-                            value={producto.characteristics.size || ''}
+                            value={producto.characteristics.size}
                             onChange={handleChange}
+                            required
                         />
                         {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
                     </div>
@@ -199,8 +202,9 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                         <input
                             type="text"
                             name='color'
-                            value={producto.characteristics.color || ''}
+                            value={producto.characteristics.color}
                             onChange={handleChange}
+                            required
                         />
                         {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
                     </div>
@@ -213,8 +217,9 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     <input
                         type="text"
                         name='stone'
-                        value={producto.characteristics.stone || ''}
+                        value={producto.characteristics.stone}
                         onChange={handleChange}
+                        required
                     />
                     {errores.stone && <p style={{ color: 'red' }}>{errores.stone}</p>}
                 </div>
@@ -222,7 +227,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
 
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
                 <button className='secondary' type='submit'>Editar</button>
-                <button className='delete' onClick={() => setOpenEditor(false)}>Cancelar</button>
+                <button className='delete' type='button' onClick={() => setOpenEditor(false)}>Cancelar</button>
             </div>
         </form>
     )

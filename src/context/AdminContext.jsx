@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react"
+import Swal from "sweetalert2"
 
 export const AdminContext = createContext()
 
@@ -48,9 +49,12 @@ export const AdminProvider = ({ children }) => {
                 throw new Error('Error al agregar producto')
             }
             const data = await respuesta.json()
-            console.log(data)
-            console.log({ producto })
-            alert('Producto agregado correctamente')
+
+            Swal.fire({
+                title: "Agregado!",
+                text: "Producto agregado correctamente!",
+                icon: "success"
+            });
             cargarProductos()
         } catch (error) {
             console.log(error.message)
@@ -69,7 +73,11 @@ export const AdminProvider = ({ children }) => {
                 throw Error('Error al actualizar el producto')
             }
             const data = await respuesta.json()
-            alert('Producto actualizado correctamente')
+            Swal.fire({
+                title: "Actualizado!",
+                text: "El producto ha sido actualizado correctamente.",
+                icon: "success"
+            });
             setOpenEditor(false)
             setSeleccionado(null)
             cargarProductos()
@@ -88,11 +96,32 @@ export const AdminProvider = ({ children }) => {
                     method: 'DELETE'
                 })
                 if (!respuesta.ok) throw Error('Error al eliminar producto')
-                alert('Producto eliminado correctamente')
+                Swal.fire({
+                    title: "¿Está seguro que desea eliminar este producto?",
+                    text: "No podrás recuperar este producto nuevamnete",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Si, eliminar!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Eliminado!",
+                            text: "El producto ha sido eliminado correctamente.",
+                            icon: "success"
+                        });
+                    }
+                });
                 setOpen(false)
                 cargarProductos()
             } catch (error) {
-                alert('Hubo un problema a eliminar el producto')
+                Swal.fire({
+                    title: "Error!",
+                    text: "Hubo un problema a eliminar el producto.",
+                    icon: "error"
+                });
             }
         }
     }

@@ -52,6 +52,7 @@ const FormularioProducto = ({ onAgregar }) => {
             brand: '',
             characteristics: {}
         })
+        setOpen(false)
     }
 
     return (
@@ -100,7 +101,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     onChange={handleChange}
                     required
                 />
-                <img src={producto.image || ''} alt={producto.name || ''} />
+                <img src={producto.image || null} alt={producto.name || ''} />
                 {errores.image && <p style={{ colore: 'red' }}>{errores.image}</p>}
             </div>
             <div>
@@ -180,7 +181,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="text"
                     name='origen'
-                    value={producto.characteristics.origen || ''}
+                    value={producto.characteristics.origen}
                     onChange={handleChange}
                 />
                 {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
@@ -190,7 +191,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="text"
                     name='material'
-                    value={producto.characteristics.material || ''}
+                    value={producto.characteristics.material}
                     onChange={handleChange}
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
@@ -202,7 +203,7 @@ const FormularioProducto = ({ onAgregar }) => {
                         <input
                             type="text"
                             name='size'
-                            value={producto.characteristics.size || ''}
+                            value={producto.characteristics.size}
                             onChange={handleChange}
                         />
                         {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
@@ -212,7 +213,7 @@ const FormularioProducto = ({ onAgregar }) => {
                         <input
                             type="text"
                             name='color'
-                            value={producto.characteristics.color || ''}
+                            value={producto.characteristics.color}
                             onChange={handleChange}
                         />
                         {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
@@ -226,7 +227,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     <input
                         type="text"
                         name='stone'
-                        value={producto.characteristics.stone || ''}
+                        value={producto.characteristics.stone}
                         onChange={handleChange}
                     />
                     {errores.stone && <p style={{ color: 'red' }}>{errores.stone}</p>}
@@ -234,8 +235,8 @@ const FormularioProducto = ({ onAgregar }) => {
             }
 
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-                <button className='primary' type='submit'>Crear</button>
-                <button className='delete' onClick={() => setOpen(false)}>Cancelar</button>
+                <button className='primary' type='submit' >Crear</button>
+                <button className='delete' type='button' onClick={() => setOpen(false)}>Cancelar</button>
             </div>
         </form>
     )

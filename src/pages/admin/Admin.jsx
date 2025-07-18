@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Modal } from 'react-bootstrap'
 import AdminHeader from '../../components/estaticos/AdminHeader.jsx'
 import cartLoading from '../../assets/shopping-cart.webm'
 import FormularioProducto from '../../components/FormularioProducto.jsx'
@@ -34,6 +35,15 @@ const Admin = () => {
                     <AdminHeader />
                     <main>
                         <h1>Panel de control</h1>
+                        <button onClick={() => setOpen(true)}>Agregar nuevo producto</button>
+                        <Modal show={open} onHide={() => setOpen(false)}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Agregar producto</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <FormularioProducto onAgregar={agregarProducto} />
+                            </Modal.Body>
+                        </Modal>
                         <ul style={{
                             display: 'flex',
                             flexWrap: 'wrap',
@@ -106,9 +116,15 @@ const Admin = () => {
                                 </li>
                             ))}
                         </ul>
-                        <button onClick={() => setOpen(true)}>Agregar nuevo producto</button>
-                        {open && (<FormularioProducto onAgregar={agregarProducto} />)}
-                        {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto} />)}
+                        {/* {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto} />)} */}
+                            <Modal show={openEditor} onHide={() => setOpenEditor(false)}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Editar producto</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto} />
+                                </Modal.Body>
+                            </Modal>
                     </main>
                 </>
 
