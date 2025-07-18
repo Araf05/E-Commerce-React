@@ -30,11 +30,11 @@ export const AuthProvider = ({ children }) => {
             setRole(userRole)
             setIsAuth(true)
 
-             if (userRole === 'admin') {
-                 navigate('/admin')
-             } else {
-                 navigate('/')
-             }
+            if (userRole === 'admin') {
+                navigate('/admin')
+            } else {
+                navigate('/')
+            }
         }
     }, [])
 
@@ -94,6 +94,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setIsAuth(false)
         setRole('')
+        setPassword('')
+        setEmail('')
         localStorage.removeItem('isAuth')
         localStorage.removeItem('role')
         localStorage.removeItem('cart')

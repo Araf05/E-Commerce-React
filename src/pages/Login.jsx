@@ -1,10 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import login from '../assets/login.png'
 
 const Login = () => {
     const { email, setEmail, password, setPassword, handleSubmit, error } = useAuth()
 
+    useEffect(() => {
+        setEmail('')
+        setPassword('')
+    }, [])
 
     return (
         <>

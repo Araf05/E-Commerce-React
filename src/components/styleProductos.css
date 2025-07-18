@@ -102,9 +102,13 @@
         border: none;
     }
 
-    &:hover:disabled {
+    &:disabled {
         background: #e0e0e0;
         color: #666666;
-        cursor: not-allowed;
+
+        &:hover {
+            cursor: not-allowed;
+        }
     }
+
 }

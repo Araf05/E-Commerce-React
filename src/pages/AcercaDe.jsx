@@ -7,7 +7,7 @@ const AcercaDe = () => {
         <>
             <Header />
             <body>
-                <main>
+                <main style={{ minHeight: '90vh' }}>
                     <h1>Acerca De</h1>
                     <h2 style={{ color: ' #004080' }}>¿Quiénes somos?</h2>
                     <p>

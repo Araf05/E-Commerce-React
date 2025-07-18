@@ -8,7 +8,7 @@ const Contactos = () => {
         <>
             <Header />
             <body>
-                <main>
+                <main style={{minHeight:'90vh'}}>
                     <h1>Contactos</h1>
                     <p style={{ textAlign: 'center', marginBottom: '20px', color: '#555' }}>
                         Podés comunicarte con nosotros a través de nuestras redes sociales o por correo electrónico. ¡Te responderemos lo antes posible!
