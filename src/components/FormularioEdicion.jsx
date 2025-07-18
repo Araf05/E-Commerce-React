@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { AdminContext } from '../context/AdminContext'
 
 function FormularioEdicion({ productoSeleccionado, onActualizar }) {
     const [producto, setProducto] = useState(productoSeleccionado)
     const [categoria, setCategoria] = useState([])
     const [errores, setErrores] = useState({})
+    const { setOpenEditor } = useContext(AdminContext)
 
     useEffect(() => {
         setProducto(productoSeleccionado)
@@ -90,13 +92,6 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
             </div>
             <div>
                 <label>Categoría</label>
-                {/* <input
-                    type="text"
-                    name='category'
-                    value={producto.category}
-                    onChange={handleChange}
-                    required
-                /> */}
                 <select
                     name="category"
                     value={producto.category || ''}
@@ -169,7 +164,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
                 <button className='secondary' type='submit'>Editar</button>
-                <button className='delete'>Cancelar</button>
+                <button className='delete' onClick={() => setOpenEditor(false)}>Cancelar</button>
             </div>
         </form>
     )

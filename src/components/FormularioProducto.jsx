@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './styleFormulario.css'
+import { AdminContext } from '../context/AdminContext'
 
 const FormularioProducto = ({ onAgregar }) => {
     const [producto, setProducto] = useState({
@@ -14,8 +15,22 @@ const FormularioProducto = ({ onAgregar }) => {
         brand: '',
         characteristics: {}
     })
-
+    const { setOpen } = useContext(AdminContext)
     const [errores, setErrores] = useState({})
+
+    const [categoria, setCategoria] = useState([])
+
+    useEffect(() => {
+        fetch('../data/category.json')
+            .then(respuesta => respuesta.json())
+            .then(datos => {
+                setCategoria(datos)
+            })
+            .catch(error => {
+                console.log('Error ', error)
+                setErrores(true)
+            })
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -85,18 +100,46 @@ const FormularioProducto = ({ onAgregar }) => {
                     onChange={handleChange}
                     required
                 />
+                <img src={producto.image || ''} alt={producto.name || ''} />
                 {errores.image && <p style={{ colore: 'red' }}>{errores.image}</p>}
             </div>
             <div>
                 <label>Categoría</label>
-                <input
-                    type="text"
-                    name='category'
-                    value={producto.category}
+                <select
+                    name="category"
+                    value={producto.category || ''}
                     onChange={handleChange}
                     required
-                />
+                >
+                    <option value="" disabled>Seleccionar categoría</option>
+                    {categoria.map(item => (
+                        <option key={item.id} value={item.name}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
                 {errores.category && <p style={{ colore: 'red' }}>{errores.category}</p>}
+            </div>
+            <div>
+                <label>Tipo</label>
+                {producto.category && (
+                    <select
+                        name="type"
+                        value={producto.type || ''}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="" disabled>Seleccionar tipo</option>
+                        {categoria
+                            .find(cat => cat.name === producto.category)
+                            ?.type.map((tipo, i) => (
+                                <option key={i} value={tipo}>
+                                    {tipo}
+                                </option>
+                            ))}
+                    </select>
+                )}
+                {errores.type && <p style={{ colore: 'red' }}>{errores.type}</p>}
             </div>
             <div>
                 <label>Stock</label>
@@ -107,17 +150,6 @@ const FormularioProducto = ({ onAgregar }) => {
                     onChange={handleChange}
                 />
                 {errores.stock && <p style={{ colore: 'red' }}>{errores.stock}</p>}
-            </div>
-            <div>
-                <label>Tipo</label>
-                <input
-                    type="text"
-                    name='type'
-                    value={producto.type}
-                    onChange={handleChange}
-                    required
-                />
-                {errores.type && <p style={{ colore: 'red' }}>{errores.type}</p>}
             </div>
             <div>
                 <label>
@@ -143,7 +175,10 @@ const FormularioProducto = ({ onAgregar }) => {
                 />
                 {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
             </div>
-            <button type='submit'>Crear</button>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+                <button className='primary' type='submit'>Crear</button>
+                <button className='delete' onClick={() => setOpen(false)}>Cancelar</button>
+            </div>
         </form>
     )
 }
