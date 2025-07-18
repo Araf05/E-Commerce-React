@@ -72,7 +72,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <label>Descripción</label>
                 <textarea
                     name='description'
-                    value={producto.description}
+                    value={producto.description || ''}
                     onChange={handleChange}
                     required
                 />
@@ -83,7 +83,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='image'
-                    value={producto.image}
+                    value={producto.image || ''}
                     onChange={handleChange}
                     required
                 />
@@ -133,7 +133,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="number"
                     name='stock'
-                    value={producto.stock}
+                    value={producto.stock || ''}
                     onChange={handleChange}
                 />
                 {errores.stock && <p style={{ color: 'red' }}>{errores.stock}</p>}
@@ -144,7 +144,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     <input
                         type="checkbox"
                         name='featured'
-                        value={producto.featured}
+                        value={producto.featured || ''}
                         onChange={handleChange}
                         style={{ marginLeft: '.5rem' }}
                     />
@@ -157,7 +157,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='brand'
-                    value={producto.brand}
+                    value={producto.brand || ''}
                     onChange={handleChange}
                 />
                 {errores.brand && <p style={{ color: 'red' }}>{errores.brand}</p>}
@@ -167,7 +167,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='origen'
-                    value={producto.characteristics.origen}
+                    value={producto.characteristics.origen || ''}
                     onChange={handleChange}
                 />
                 {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
@@ -177,7 +177,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="text"
                     name='material'
-                    value={producto.characteristics.material}
+                    value={producto.characteristics.material || ''}
                     onChange={handleChange}
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}

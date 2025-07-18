@@ -62,7 +62,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="text"
                     name='name'
-                    value={producto.name}
+                    value={producto.name || ''}
                     onChange={handleChange}
                     required
                 />
@@ -73,7 +73,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="number"
                     name='price'
-                    value={producto.price}
+                    value={producto.price || ''}
                     onChange={handleChange}
                     min={0}
                     step="0.01"
@@ -85,7 +85,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <label>Descripción</label>
                 <textarea
                     name='description'
-                    value={producto.description}
+                    value={producto.description || ''}
                     onChange={handleChange}
                     required
                 />
@@ -96,7 +96,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="text"
                     name='image'
-                    value={producto.image}
+                    value={producto.image || ''}
                     onChange={handleChange}
                     required
                 />
@@ -146,7 +146,7 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="number"
                     name='stock'
-                    value={producto.stock}
+                    value={producto.stock || ''}
                     onChange={handleChange}
                 />
                 {errores.stock && <p style={{ colore: 'red' }}>{errores.stock}</p>}
@@ -157,7 +157,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     <input
                         type="checkbox"
                         name='featured'
-                        value={producto.featured}
+                        value={producto.featured || ''}
                         onChange={handleChange}
                         style={{ marginLeft: '.5rem' }}
                     />
@@ -170,11 +170,69 @@ const FormularioProducto = ({ onAgregar }) => {
                 <input
                     type="text"
                     name='brand'
-                    value={producto.brand}
+                    value={producto.brand || ''}
                     onChange={handleChange}
                 />
                 {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
             </div>
+            <div>
+                <label>Origen</label>
+                <input
+                    type="text"
+                    name='origen'
+                    value={producto.characteristics.origen || ''}
+                    onChange={handleChange}
+                />
+                {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
+            </div>
+            <div>
+                <label>Material</label>
+                <input
+                    type="text"
+                    name='material'
+                    value={producto.characteristics.material || ''}
+                    onChange={handleChange}
+                />
+                {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
+            </div>
+            {producto.category === 'Indumentaria' &&
+                <>
+                    <div>
+                        <label>Talle</label>
+                        <input
+                            type="text"
+                            name='size'
+                            value={producto.characteristics.size || ''}
+                            onChange={handleChange}
+                        />
+                        {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
+                    </div>
+                    <div>
+                        <label>Color</label>
+                        <input
+                            type="text"
+                            name='color'
+                            value={producto.characteristics.color || ''}
+                            onChange={handleChange}
+                        />
+                        {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
+                    </div>
+                </>
+            }
+
+            {producto.category === 'Joyería' &&
+                <div>
+                    <label>Piedra</label>
+                    <input
+                        type="text"
+                        name='stone'
+                        value={producto.characteristics.stone || ''}
+                        onChange={handleChange}
+                    />
+                    {errores.stone && <p style={{ color: 'red' }}>{errores.stone}</p>}
+                </div>
+            }
+
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
                 <button className='primary' type='submit'>Crear</button>
                 <button className='delete' onClick={() => setOpen(false)}>Cancelar</button>

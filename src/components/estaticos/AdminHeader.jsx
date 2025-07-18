@@ -39,14 +39,6 @@ const AdminHeader = () => {
                                 ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"} >
                                 Panel Control
                             </NavLink></li>
-
-                            <li className="nav-item"><NavLink to='/panel' className={
-                                ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"}>
-                                Reportes</NavLink></li>
-
-                            <li className="nav-item"><NavLink to='/admin' className={
-                                ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"}>
-                                sucursales</NavLink></li>
                         </ul>
                     </nav>
                 </nav>
