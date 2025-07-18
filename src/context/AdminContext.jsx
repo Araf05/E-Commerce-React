@@ -78,6 +78,8 @@ export const AdminProvider = ({ children }) => {
                 text: "El producto ha sido actualizado correctamente.",
                 icon: "success"
             });
+            console.log(data)
+            console.log(producto)
             setOpenEditor(false)
             setSeleccionado(null)
             cargarProductos()

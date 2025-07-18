@@ -50,7 +50,10 @@ const FormularioProducto = ({ onAgregar }) => {
             type: '',
             featured: 'false',
             brand: '',
-            characteristics: {}
+            color: '',
+            size: '',
+            material: '',
+            origen: ''
         })
         setOpen(false)
     }
@@ -157,13 +160,13 @@ const FormularioProducto = ({ onAgregar }) => {
                     Destacado
                     <input
                         type="checkbox"
-                        name='featured'
-                        value={producto.featured || ''}
-                        onChange={handleChange}
-                        style={{ marginLeft: '.5rem' }}
+                        name="featured"
+                        checked={producto.featured === true}
+                        onChange={(e) =>
+                            setProducto({ ...producto, featured: e.target.checked })
+                        }
                     />
                 </label>
-
                 {errores.featured && <p style={{ colore: 'red' }}>{errores.featured}</p>}
             </div>
             <div>
@@ -177,62 +180,45 @@ const FormularioProducto = ({ onAgregar }) => {
                 {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
             </div>
             <div>
-                <label>Origen</label>
+                <label>Color</label>
                 <input
                     type="text"
-                    name='origen'
-                    value={producto.characteristics.origen}
+                    name='color'
+                    value={producto.color || ''}
                     onChange={handleChange}
                 />
-                {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
+                {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
+            </div>
+            <div>
+                <label>Talle</label>
+                <input
+                    type="text"
+                    name='size'
+                    value={producto.size || ''}
+                    onChange={handleChange}
+                />
+                {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
             </div>
             <div>
                 <label>Material</label>
                 <input
                     type="text"
                     name='material'
-                    value={producto.characteristics.material}
+                    value={producto.material || ''}
                     onChange={handleChange}
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
             </div>
-            {producto.category === 'Indumentaria' &&
-                <>
-                    <div>
-                        <label>Talle</label>
-                        <input
-                            type="text"
-                            name='size'
-                            value={producto.characteristics.size}
-                            onChange={handleChange}
-                        />
-                        {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
-                    </div>
-                    <div>
-                        <label>Color</label>
-                        <input
-                            type="text"
-                            name='color'
-                            value={producto.characteristics.color}
-                            onChange={handleChange}
-                        />
-                        {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
-                    </div>
-                </>
-            }
-
-            {producto.category === 'Joyería' &&
-                <div>
-                    <label>Piedra</label>
-                    <input
-                        type="text"
-                        name='stone'
-                        value={producto.characteristics.stone}
-                        onChange={handleChange}
-                    />
-                    {errores.stone && <p style={{ color: 'red' }}>{errores.stone}</p>}
-                </div>
-            }
+            <div>
+                <label>Origen</label>
+                <input
+                    type="text"
+                    name='origen'
+                    value={producto.origen || ''}
+                    onChange={handleChange}
+                />
+                {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
                 <button className='primary' type='submit' >Crear</button>

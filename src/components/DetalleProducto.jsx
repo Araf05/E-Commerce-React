@@ -90,17 +90,10 @@ const DetalleProducto = ({ productos, cargando }) => {
                                         <li>Categoría: {product.category}</li>
                                         <li>Tipo de producto: {product.type}</li>
                                         <li>Marca: {product.brand}</li>
-                                        {product.characteristics && Object.keys(product.characteristics).length > 0 && (
-                                            <div>
-                                                {
-                                                    Object.entries(product.characteristics).map(([key, value]) => (
-                                                        <li key={key}>
-                                                            {key[0].toUpperCase() + key.slice(1)}: {value || 'N/A'}
-                                                        </li>
-                                                    ))
-                                                }
-                                            </div>
-                                        )}
+                                        <li>Color: {product.color}</li>
+                                        <li>Size: {product.size}</li>
+                                        <li>Material: {product.material}</li>
+                                        <li>Origen: {product.origen}</li>
                                     </ul>
                                 </div>
 

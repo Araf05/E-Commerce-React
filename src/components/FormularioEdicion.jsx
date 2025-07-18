@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { AdminContext } from '../context/AdminContext'
 
 function FormularioEdicion({ productoSeleccionado, onActualizar }) {
+    if (!productoSeleccionado) return null;
+
     const [producto, setProducto] = useState(productoSeleccionado)
     const [categoria, setCategoria] = useState([])
     const [errores, setErrores] = useState({})
@@ -10,6 +12,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
     useEffect(() => {
         setProducto(productoSeleccionado)
     }, [productoSeleccionado])
+
 
     useEffect(() => {
         fetch('../data/category.json')
@@ -24,9 +27,10 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
     }, [])
 
     const handleChange = (e) => {
-        const { name, value } = e.target
-        setProducto({ ...producto, [name]: value })
+        const { name, value } = e.target;
+        setProducto({ ...producto, [name]: value });
     }
+
 
     return (
         <form onSubmit={(e) => {
@@ -38,7 +42,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <input
                     type="number"
                     name='id'
-                    value={producto.id || ''}
+                    value={producto.id}
                     onChange={handleChange}
                     readOnly
                 />
@@ -142,13 +146,13 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     Destacado
                     <input
                         type="checkbox"
-                        name='featured'
-                        value={producto.featured || ''}
-                        onChange={handleChange}
-                        style={{ marginLeft: '.5rem' }}
+                        name="featured"
+                        checked={producto.featured === true}
+                        onChange={(e) =>
+                            setProducto({ ...producto, featured: e.target.checked })
+                        }
                     />
                 </label>
-
                 {errores.featured && <p style={{ color: 'red' }}>{errores.featured}</p>}
             </div>
             <div>
@@ -163,67 +167,45 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 {errores.brand && <p style={{ color: 'red' }}>{errores.brand}</p>}
             </div>
             <div>
-                <label>Origen</label>
+                <label>Color</label>
                 <input
                     type="text"
-                    name='origen'
-                    value={producto.characteristics.origen}
+                    name='color'
+                    value={producto.color || ''}
                     onChange={handleChange}
-                    required
                 />
-                {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
+                {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
+            </div>
+            <div>
+                <label>Talle</label>
+                <input
+                    type="text"
+                    name='size'
+                    value={producto.size || ''}
+                    onChange={handleChange}
+                />
+                {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
             </div>
             <div>
                 <label>Material</label>
                 <input
                     type="text"
                     name='material'
-                    value={producto.characteristics.material}
+                    value={producto.material || ''}
                     onChange={handleChange}
-                    required
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
             </div>
-            {producto.category === 'Indumentaria' &&
-                <>
-                    <div>
-                        <label>Talle</label>
-                        <input
-                            type="text"
-                            name='size'
-                            value={producto.characteristics.size}
-                            onChange={handleChange}
-                            required
-                        />
-                        {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
-                    </div>
-                    <div>
-                        <label>Color</label>
-                        <input
-                            type="text"
-                            name='color'
-                            value={producto.characteristics.color}
-                            onChange={handleChange}
-                            required
-                        />
-                        {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
-                    </div>
-                </>
-            }
-
-            {producto.category === 'Joyería' &&
-                <div>
-                    <label>Piedra</label>
-                    <input
-                        type="text"
-                        name='stone'
-                        value={producto.characteristics.stone}
-                        onChange={handleChange}
-                        required
-                    />
-                    {errores.stone && <p style={{ color: 'red' }}>{errores.stone}</p>}
-                </div>
-            }
+            <div>
+                <label>Origen</label>
+                <input
+                    type="text"
+                    name='origen'
+                    value={producto.origen || ''}
+                    onChange={handleChange}
+                />
+                {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
                 <button className='secondary' type='submit'>Editar</button>

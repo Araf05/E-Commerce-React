@@ -20,8 +20,8 @@ const Cart = ({ isOpen, onClose }) => {
             </div>
             <div className='cart-content'>
                 {comprar === true ? (
-                    <div style={{ display: 'flex', width: '100%', flexDirection: 'column', justifyContent: 'center', alignItems:'center' }}>
-                        <video autoPlay muted playsInline style={{width:'150px'}}>
+                    <div style={{ display: 'flex', width: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <video autoPlay muted playsInline style={{ width: '150px' }}>
                             <source src={check} type='video/webm' />
                         </video>
                         <h4>Compra finalizada</h4>
@@ -60,9 +60,11 @@ const Cart = ({ isOpen, onClose }) => {
                                                     <p style={{ fontSize: '.8rem', margin: '0' }}>Item No. ITM-{item.id}</p>
                                                     <h6>{item.brand}</h6>
                                                     <p>{item.type}</p>
+                                                    <p style={{ fontSize: '.8rem' }}>Talle: {item.size} </p>
                                                     {item.category === 'Indumentaria' ?
-                                                        <p>Talle: {item.characteristics.size} </p> :
-                                                        <p>Material: {item.characteristics.material} </p>
+                                                        <p style={{ fontSize: '.8rem' }}>Color: {item.color} </p>
+                                                        :
+                                                        <p style={{ fontSize: '.8rem' }}>Material: {item.material} </p>
                                                     }
 
                                                 </div>
