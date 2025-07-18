@@ -49,15 +49,36 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border: none;
+  padding: 0.5em 1em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  &.secondary {
+    background-color: #54567c;
+    color: #ffffff;
+    border-radius: 15px;
+
+    &:hover {
+      background-color: #27283b;
+    }
+  }
+
+  &.delete {
+    background-color: rgb(180, 0, 0);
+    color: #ffffff;
+    border-radius: 15px;
+    border: none;
+
+    &:hover {
+      background-color: rgb(230, 0, 0);
+      border: none;
+    }
+  }
+
 }
 
 button:hover {
@@ -79,7 +100,4 @@ button:focus-visible {
     color: #747bff;
   }
 
-  button {
-    background-color: #f9f9f9;
-  }
 }

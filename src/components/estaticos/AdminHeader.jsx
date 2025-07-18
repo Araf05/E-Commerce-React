@@ -10,8 +10,8 @@ const AdminHeader = () => {
                 <nav className="hRow navbar navbar-expand-lg  bg-body-tertiary">
                     <div>
                         <ul style={{ width: '100vw', height: '8vh' }}>
-                            <li className='navbanner'>
-                                <Link to='/' className='link'>
+                            <li className='navbrand'>
+                                <Link to='/admin' className='link'>
                                     <h3>Shop</h3>
                                 </Link>
                             </li>
@@ -40,7 +40,7 @@ const AdminHeader = () => {
                                 Panel Control
                             </NavLink></li>
 
-                            <li className="nav-item"><NavLink to='/admin' className={
+                            <li className="nav-item"><NavLink to='/panel' className={
                                 ({ isActive, isPending }) => isPending ? "pending" : isActive ? "active" : "link"}>
                                 Reportes</NavLink></li>
 
@@ -50,40 +50,6 @@ const AdminHeader = () => {
                         </ul>
                     </nav>
                 </nav>
-
-                {/* 
-
-
-
-
-
-                <div className='hRow'>
-                    <ul>
-                        <li>
-                            <button>
-                                <i className='fa-solid fa-right-from-bracket'></i>
-                            </button>
-                        </li>
-                        <li style={{ textAlign: 'center' }}>
-                            <Link to='/login' className='link'>
-                                <i class="fa-solid fa-user"></i>
-                                <p style={{ fontSize: '.5rem', color: 'grey' }}>Admin</p>
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to='/Admin' className='link'>Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link to='' className='link'>
-                                Reportes
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>*/}
             </header>
         </>
     )

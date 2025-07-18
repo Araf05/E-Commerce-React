@@ -2,11 +2,24 @@ import React, { useState, useEffect } from 'react'
 
 function FormularioEdicion({ productoSeleccionado, onActualizar }) {
     const [producto, setProducto] = useState(productoSeleccionado)
+    const [categoria, setCategoria] = useState([])
     const [errores, setErrores] = useState({})
 
     useEffect(() => {
         setProducto(productoSeleccionado)
     }, [productoSeleccionado])
+
+    useEffect(() => {
+        fetch('../data/category.json')
+            .then(respuesta => respuesta.json())
+            .then(datos => {
+                setCategoria(datos)
+            })
+            .catch(error => {
+                console.log('Error ', error)
+                setErrores(true)
+            })
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -38,7 +51,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     onChange={handleChange}
                     required
                 />
-                {errores.name && <p style={{ colore: 'red' }}>{errores.name}</p>}
+                {errores.name && <p style={{ color: 'red' }}>{errores.name}</p>}
             </div>
             <div>
                 <label>Precio</label>
@@ -51,7 +64,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     step="0.01"
                     required
                 />
-                {errores.price && <p style={{ colore: 'red' }}>{errores.price}</p>}
+                {errores.price && <p style={{ color: 'red' }}>{errores.price}</p>}
             </div>
             <div>
                 <label>Descripción</label>
@@ -61,7 +74,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     onChange={handleChange}
                     required
                 />
-                {errores.description && <p style={{ colore: 'red' }}>{errores.description}</p>}
+                {errores.description && <p style={{ color: 'red' }}>{errores.description}</p>}
             </div>
             <div>
                 <label>Imagen</label>
@@ -72,18 +85,53 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     onChange={handleChange}
                     required
                 />
-                {errores.image && <p style={{ colore: 'red' }}>{errores.image}</p>}
+                <img src={producto.image} alt={producto.name} />
+                {errores.image && <p style={{ color: 'red' }}>{errores.image}</p>}
             </div>
             <div>
                 <label>Categoría</label>
-                <input
+                {/* <input
                     type="text"
                     name='category'
                     value={producto.category}
                     onChange={handleChange}
                     required
-                />
-                {errores.category && <p style={{ colore: 'red' }}>{errores.category}</p>}
+                /> */}
+                <select
+                    name="category"
+                    value={producto.category || ''}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="" disabled>Seleccionar categoría</option>
+                    {categoria.map(item => (
+                        <option key={item.id} value={item.name}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+                {errores.category && <p style={{ color: 'red' }}>{errores.category}</p>}
+            </div>
+            <div>
+                <label>Tipo</label>
+                {producto.category && (
+                    <select
+                        name="type"
+                        value={producto.type || ''}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="" disabled>Seleccionar tipo</option>
+                        {categoria
+                            .find(cat => cat.name === producto.category)
+                            ?.type.map((tipo, i) => (
+                                <option key={i} value={tipo}>
+                                    {tipo}
+                                </option>
+                            ))}
+                    </select>
+                )}
+                {errores.type && <p style={{ color: 'red' }}>{errores.type}</p>}
             </div>
             <div>
                 <label>Stock</label>
@@ -93,18 +141,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     value={producto.stock}
                     onChange={handleChange}
                 />
-                {errores.stock && <p style={{ colore: 'red' }}>{errores.stock}</p>}
-            </div>
-            <div>
-                <label>Tipo</label>
-                <input
-                    type="text"
-                    name='type'
-                    value={producto.type}
-                    onChange={handleChange}
-                    required
-                />
-                {errores.type && <p style={{ colore: 'red' }}>{errores.type}</p>}
+                {errores.stock && <p style={{ color: 'red' }}>{errores.stock}</p>}
             </div>
             <div>
                 <label>
@@ -118,7 +155,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     />
                 </label>
 
-                {errores.featured && <p style={{ colore: 'red' }}>{errores.featured}</p>}
+                {errores.featured && <p style={{ color: 'red' }}>{errores.featured}</p>}
             </div>
             <div>
                 <label>Marca</label>
@@ -128,10 +165,12 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     value={producto.brand}
                     onChange={handleChange}
                 />
-                {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
+                {errores.brand && <p style={{ color: 'red' }}>{errores.brand}</p>}
             </div>
-            <button type='submit'>Editar</button>
-            <button>Cancelar</button>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+                <button className='secondary' type='submit'>Editar</button>
+                <button className='delete'>Cancelar</button>
+            </div>
         </form>
     )
 }

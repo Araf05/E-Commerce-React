@@ -14,7 +14,7 @@ const Header = () => {
             <nav className="hRow navbar navbar-expand-lg  bg-body-tertiary">
                 <div>
                     <ul style={{ width: '100vw', height: '8vh' }}>
-                        <li className='navbanner'>
+                        <li className='navbrand'>
                             <Link to='/' className='link'>
                                 <h3>Shop</h3>
                             </Link>

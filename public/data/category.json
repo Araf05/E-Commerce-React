@@ -1,5 +1,6 @@
 [
     {
+        "id": "1",
         "name": "Indumentaria",
         "type": [
             "Calzado",
@@ -11,6 +12,7 @@
         ]
     },
     {
+        "id": "2",
         "name": "Joyería",
         "type": [
             "Aro",
