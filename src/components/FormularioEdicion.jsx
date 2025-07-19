@@ -65,7 +65,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     name='price'
                     value={producto.price}
                     onChange={handleChange}
-                    min={0}
+                    min={1}
                     step="0.01"
                     required
                 />
@@ -75,7 +75,10 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <label>Descripción</label>
                 <textarea
                     name='description'
+                    minLength={10}
+                    maxLength={200}
                     value={producto.description || ''}
+                    placeholder="Descripción..."
                     onChange={handleChange}
                     required
                 />
@@ -135,6 +138,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                 <label>Stock</label>
                 <input
                     type="number"
+                    min={0}
                     name='stock'
                     value={producto.stock || ''}
                     onChange={handleChange}
@@ -173,6 +177,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     name='color'
                     value={producto.color || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
             </div>
@@ -183,6 +188,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     name='size'
                     value={producto.size || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
             </div>
@@ -193,6 +199,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     name='material'
                     value={producto.material || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
             </div>
@@ -203,6 +210,7 @@ function FormularioEdicion({ productoSeleccionado, onActualizar }) {
                     name='origen'
                     value={producto.origen || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
             </div>

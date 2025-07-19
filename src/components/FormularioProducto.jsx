@@ -79,7 +79,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='price'
                     value={producto.price || ''}
                     onChange={handleChange}
-                    min={0}
+                    min={1}
                     step="0.01"
                     required
                 />
@@ -91,6 +91,9 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='description'
                     value={producto.description || ''}
                     onChange={handleChange}
+                    minLength={10}
+                    maxLength={200}
+                    placeholder="Descripción..."
                     required
                 />
                 {errores.description && <p style={{ colore: 'red' }}>{errores.description}</p>}
@@ -149,9 +152,11 @@ const FormularioProducto = ({ onAgregar }) => {
                 <label>Stock</label>
                 <input
                     type="number"
+                    min={0}
                     name='stock'
                     value={producto.stock || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.stock && <p style={{ colore: 'red' }}>{errores.stock}</p>}
             </div>
@@ -176,6 +181,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='brand'
                     value={producto.brand || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.brand && <p style={{ colore: 'red' }}>{errores.brand}</p>}
             </div>
@@ -186,6 +192,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='color'
                     value={producto.color || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.color && <p style={{ color: 'red' }}>{errores.color}</p>}
             </div>
@@ -196,6 +203,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='size'
                     value={producto.size || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.size && <p style={{ color: 'red' }}>{errores.size}</p>}
             </div>
@@ -206,6 +214,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='material'
                     value={producto.material || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.material && <p style={{ color: 'red' }}>{errores.material}</p>}
             </div>
@@ -216,6 +225,7 @@ const FormularioProducto = ({ onAgregar }) => {
                     name='origen'
                     value={producto.origen || ''}
                     onChange={handleChange}
+                    required
                 />
                 {errores.origen && <p style={{ color: 'red' }}>{errores.origen}</p>}
             </div>

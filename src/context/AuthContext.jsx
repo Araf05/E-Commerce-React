@@ -12,15 +12,6 @@ export const AuthProvider = ({ children }) => {
     const [role, setRole] = useState('')
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     const isAuthenticated = localStorage.getItem('isAuth') === 'false'
-    //     const userRole = localStorage.getItem('role') || ''
-    //     if (isAuthenticated && userRole === 'admin') {
-    //         setRole(userRole)
-    //         setIsAuth(true)
-    //         navigate('/admin')
-    //     }
-    // }, [])
 
     useEffect(() => {
         const isAuth = localStorage.getItem('isAuth') === 'true'
@@ -56,19 +47,6 @@ export const AuthProvider = ({ children }) => {
             const foundUser = users.find(
                 (user) => user.email === email && user.password === password
             )
-
-            //  if (!foundUser) {
-            //      setError({ email: 'Las credenciales son invalidas', password: 'Las credenciales son invalidas' })
-            //  } else {
-            //      if (foundUser.role === 'admin') {
-            //          setIsAuth(true)
-            //          localStorage.setItem('isAuth', true)
-            //          localStorage.setItem('role', foundUser.role)
-            //          navigate('/admin')
-            //      } else {
-            //          navigate('/')
-            //      }
-            //  }
 
             if (!foundUser) {
                 setError({ email: 'Las credenciales son inválidas', password: 'Las credenciales son inválidas' })
